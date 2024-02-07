@@ -7,8 +7,8 @@
 <body>
 <h1>振込確認画面</h1>
 <form action="#" th:action="@{/transfer}" th:object="${bankTransferApplication}" method="post">
-    <p>口座番号: <span th:text="*{accounNum}"></span></p>
-    <input type="hidden" name="accounNum" th:value="*{accounNum}"/>
+    <p>口座番号: <span th:text="*{accountNum}"></span></p>
+    <input type="hidden" name="accountNum" th:value="*{accountNum}"/>
     <p>お名前: <span th:text="*{name}"></span></p>
     <input type="hidden" name="name" th:value="*{name}" readonly/>
 

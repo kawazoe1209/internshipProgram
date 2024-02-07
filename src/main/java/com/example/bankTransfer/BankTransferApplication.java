@@ -2,14 +2,14 @@ package com.example.bankTransfer;
 
 public class BankTransferApplication {
 
-    private String accounNum;
+    private String accountNum;
     private String name;
 
-    public String getAccounNum() {
-        return accounNum;
+    public String getAccountNum() {
+        return accountNum;
     }
-    public void setAccounNum(String accounNum) {
-        this.accounNum = accounNum;
+    public void setAccountNum(String accountNum) {
+        this.accountNum = accountNum;
     }
 
     public String getName() {

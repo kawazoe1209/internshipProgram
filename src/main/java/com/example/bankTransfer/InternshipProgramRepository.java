@@ -21,7 +21,7 @@ public class InternshipProgramRepository {
 
     public void create(BankTransferApplication bankTransferApplication) {
         String sql = "INSERT INTO banktransfer_table(accountNum, name) VALUES(?, ?)";
-        jdbcTemplate.update(sql, bankTransferApplication.getAccounNum(), bankTransferApplication.getName());
+        jdbcTemplate.update(sql, bankTransferApplication.getAccountNum(), bankTransferApplication.getName());
     }
 
 }
