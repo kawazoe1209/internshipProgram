@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class BankTransferHistory {
     private int accountNum;
     private String name;
     private String money;

@@ -14,9 +14,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.accountNum}">Account Number</td>
-        <td th:text="${user.name}">Name</td>
+    <tr th:each="BankTransferHistories : ${BankTransferHistories}">
+        <td th:text="${BankTransferHistories.accountNum}">Account Number</td>
+        <td th:text="${BankTransferHistories.name}">Name</td>
     </tr>
     </tbody>
 </table>

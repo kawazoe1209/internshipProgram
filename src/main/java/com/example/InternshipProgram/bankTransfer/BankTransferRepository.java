@@ -12,14 +12,14 @@ public class BankTransferRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public List<User> select() {
+    public List<BankTransferHistory> select() {
         return jdbcTemplate.query("""
                     SELECT * FROM bankTransfer_table
                     """,
-                new DataClassRowMapper<>(User.class));
+                new DataClassRowMapper<>(BankTransferHistory.class));
     }
 
-    public void create(BankTransferApplication bankTransferApplication) {
+    public void create(BankTransferApplicationForm bankTransferApplication) {
         String sql = "INSERT INTO banktransfer_table(accountNum, name) VALUES(?, ?)";
         jdbcTemplate.update(sql, bankTransferApplication.getAccountNum(), bankTransferApplication.getName());
     }

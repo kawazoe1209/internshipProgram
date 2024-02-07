@@ -17,12 +17,12 @@ public class BankTransferApplicationController {
 
     @GetMapping("/bankTransfer")
     public String bankTransfer(Model model) {
-        model.addAttribute("bankTransferApplication", new BankTransferApplication());
+        model.addAttribute("bankTransferApplication", new BankTransferApplicationForm());
         return "bankTransfer/bankTransferMain";
     }
 
     @PostMapping("/confirmation")
-    public String confirmation(@ModelAttribute BankTransferApplication bankTransferApplication, Model model) {
+    public String confirmation(@ModelAttribute BankTransferApplicationForm bankTransferApplication, Model model) {
         model.addAttribute("accountNum", bankTransferApplication.getAccountNum());
         model.addAttribute("name", bankTransferApplication.getName());
         model.addAttribute("bankTransferApplication",bankTransferApplication);
@@ -30,10 +30,10 @@ public class BankTransferApplicationController {
     }
 
     @PostMapping("/transfer")
-    public String transfer(@ModelAttribute BankTransferApplication bankTransferApplication, Model model) {
-        repository.create(bankTransferApplication);
-        List<User> users = repository.select();
-        model.addAttribute("users", users);
+    public String transfer(@ModelAttribute BankTransferApplicationForm bankTransferApplicationForm, Model model) {
+        repository.create(bankTransferApplicationForm);
+        List<BankTransferHistory> BankTransferHistories = repository.select();
+        model.addAttribute("BankTransferHistories", BankTransferHistories);
         return "bankTransfer/bankTransferList";
     }
 
