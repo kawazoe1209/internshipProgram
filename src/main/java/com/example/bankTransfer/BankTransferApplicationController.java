@@ -25,6 +25,15 @@ public class BankTransferApplicationController {
         System.out.println(greeting.getAccounNum());
         model.addAttribute("accounNum", greeting.getAccounNum());
         model.addAttribute("name", greeting.getName());
+        model.addAttribute("greeting",greeting);
+        return "bankTransfer/transferConfirmation";
+    }
+
+    @PostMapping("/puting")
+    public String test(@ModelAttribute Greeting greeting,Model model) {
+        System.out.println(greeting.getAccounNum()+"OK");
+        model.addAttribute("accounNum", greeting.getAccounNum());
+        model.addAttribute("name", greeting.getName());
         return "bankTransfer/transferConfirmation";
     }
 
