@@ -18,6 +18,7 @@ public class BankTransferApplicationController {
     @GetMapping("/bankTransfer")
     public String bankTransfer(Model model) {
         model.addAttribute("bankTransferApplication", new BankTransferApplicationForm());
+        model.addAttribute("nameOptions", "真田幸村");
         return "bankTransfer/bankTransferMain";
     }
 
