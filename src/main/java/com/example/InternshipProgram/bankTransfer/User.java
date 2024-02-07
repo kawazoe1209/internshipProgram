@@ -1,4 +1,4 @@
-package com.example.bankTransfer;
+package com.example.InternshipProgram.bankTransfer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

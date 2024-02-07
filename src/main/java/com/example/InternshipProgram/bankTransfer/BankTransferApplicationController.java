@@ -1,4 +1,4 @@
-package com.example.bankTransfer;
+package com.example.InternshipProgram.bankTransfer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,7 @@ import java.util.List;
 public class BankTransferApplicationController {
 
     @Autowired
-    private InternshipProgramRepository repository;
+    private BankTransferRepository repository;
 
     @GetMapping("/bankTransfer")
     public String bankTransfer(Model model) {

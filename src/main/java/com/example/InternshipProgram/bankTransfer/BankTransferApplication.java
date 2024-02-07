@@ -1,4 +1,4 @@
-package com.example.bankTransfer;
+package com.example.InternshipProgram.bankTransfer;
 
 public class BankTransferApplication {
 
