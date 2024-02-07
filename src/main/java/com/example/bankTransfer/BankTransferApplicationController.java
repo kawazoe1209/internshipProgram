@@ -17,13 +17,15 @@ public class BankTransferApplicationController {
     public String bankTransfer(Model model) {
         System.out.println(repository.select());
         model.addAttribute("greeting", new Greeting());
-        return "bankTransferMain";
+        return "bankTransfer/bankTransferMain";
     }
 
     @PostMapping("/greeting")
     public String greetingSubmit(@ModelAttribute Greeting greeting,Model model) {
         System.out.println(greeting.getAccounNum());
-        model.addAttribute("greeting", new Greeting());
-        return "bankTransferMain";
+        model.addAttribute("accounNum", greeting.getAccounNum());
+        model.addAttribute("name", greeting.getName());
+        return "bankTransfer/transferConfirmation";
     }
+
 }
