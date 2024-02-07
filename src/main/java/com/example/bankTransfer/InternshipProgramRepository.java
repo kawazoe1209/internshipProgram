@@ -19,4 +19,9 @@ public class InternshipProgramRepository {
                 new DataClassRowMapper<>(User.class));
     }
 
+    public void create(BankTransferApplication bankTransferApplication) {
+        String sql = "INSERT INTO banktransfer_table(accountNum, name) VALUES(?, ?)";
+        jdbcTemplate.update(sql, bankTransferApplication.getAccounNum(), bankTransferApplication.getName());
+    }
+
 }

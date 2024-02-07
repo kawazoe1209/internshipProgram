@@ -1,6 +1,6 @@
 package com.example.bankTransfer;
 
-public class Greeting {
+public class BankTransferApplication {
 
     private String accounNum;
     private String name;

@@ -16,23 +16,23 @@ public class BankTransferApplicationController {
     @GetMapping("/bankTransfer")
     public String bankTransfer(Model model) {
         System.out.println(repository.select());
-        model.addAttribute("greeting", new Greeting());
+        model.addAttribute("bankTransferApplication", new BankTransferApplication());
         return "bankTransfer/bankTransferMain";
     }
 
-    @PostMapping("/greeting")
-    public String greetingSubmit(@ModelAttribute Greeting greeting,Model model) {
-        System.out.println(greeting.getAccounNum());
-        model.addAttribute("accounNum", greeting.getAccounNum());
-        model.addAttribute("name", greeting.getName());
-        model.addAttribute("greeting",greeting);
+    @PostMapping("/confirmation")
+    public String confirmation(@ModelAttribute BankTransferApplication bankTransferApplication, Model model) {
+        model.addAttribute("accounNum", bankTransferApplication.getAccounNum());
+        model.addAttribute("name", bankTransferApplication.getName());
+        model.addAttribute("bankTransferApplication",bankTransferApplication);
         return "bankTransfer/transferConfirmation";
     }
 
-    @PostMapping("/puting")
-    public String test(@ModelAttribute Greeting greeting,Model model) {
-        System.out.println(greeting.getAccounNum()+"OK");
-        model.addAttribute("greeting", new Greeting());
+    @PostMapping("/transfer")
+    public String transfer(@ModelAttribute BankTransferApplication bankTransferApplication, Model model) {
+        System.out.println(bankTransferApplication.getAccounNum());
+        repository.create(bankTransferApplication);
+        model.addAttribute("bankTransferApplication", new BankTransferApplication());
         return "bankTransfer/bankTransferMain";
     }
 
