@@ -2,13 +2,13 @@ package com.example.bankTransfer;
 
 public class Greeting {
 
-    private long accounNum;
+    private String accounNum;
     private String name;
 
-    public long getAccounNum() {
+    public String getAccounNum() {
         return accounNum;
     }
-    public void setAccounNum(long accounNum) {
+    public void setAccounNum(String accounNum) {
         this.accounNum = accounNum;
     }
 
