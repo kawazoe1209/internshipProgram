@@ -14,14 +14,14 @@ public class BankTransferRepository {
 
     public List<BankTransferHistory> select() {
         return jdbcTemplate.query("""
-                    SELECT * FROM bankTransfer_table
-                    """,
+                        SELECT * FROM bankTransfer_table ORDER BY transferDateTime
+                        """,
                 new DataClassRowMapper<>(BankTransferHistory.class));
     }
 
     public void create(BankTransferApplicationForm bankTransferApplication) {
-        String sql = "INSERT INTO banktransfer_table(accountNum, name) VALUES(?, ?)";
-        jdbcTemplate.update(sql, bankTransferApplication.getAccountNum(), bankTransferApplication.getName());
+        String sql = "INSERT INTO bankTransfer_table(bankAccountNum, name) VALUES(?, ?)";
+        jdbcTemplate.update(sql, bankTransferApplication.getBankAccountNum(), bankTransferApplication.getName());
     }
 
 }

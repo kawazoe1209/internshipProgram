@@ -24,7 +24,7 @@ public class BankTransferApplicationController {
 
     @PostMapping("/confirmation")
     public String confirmation(@ModelAttribute BankTransferApplicationForm bankTransferApplication, Model model) {
-        model.addAttribute("accountNum", bankTransferApplication.getAccountNum());
+        model.addAttribute("bankAccountNum", bankTransferApplication.getBankAccountNum());
         model.addAttribute("name", bankTransferApplication.getName());
         model.addAttribute("bankTransferApplication",bankTransferApplication);
         return "bankTransfer/transferConfirmation";

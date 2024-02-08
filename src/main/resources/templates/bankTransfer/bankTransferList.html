@@ -1,7 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>振込一覧</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
     </thead>
     <tbody>
     <tr th:each="BankTransferHistories : ${BankTransferHistories}">
-        <td th:text="${BankTransferHistories.accountNum}">Account Number</td>
+        <td th:text="${BankTransferHistories.bankAccountNum}">Account Number</td>
         <td th:text="${BankTransferHistories.name}">Name</td>
     </tr>
     </tbody>

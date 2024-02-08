@@ -1,19 +1,20 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>振込フォーム</title>
 </head>
 <body>
 <h1>振込フォーム</h1>
 <form action="#" th:action="@{/confirmation}" th:object="${bankTransferApplication}" method="post">
-    <p>口座番号: <input type="text" th:field="*{accountNum}" /></p>
+    <p>口座番号: <input type="text" th:field="*{bankAccountNum}"/></p>
     <p>お名前: <select th:field="*{name}">
         <option th:each="option : ${nameOptions}"
                 th:value="${option}"
-                th:text="${option}">選択肢</option>
+                th:text="${option}">選択肢
+        </option>
     </select></p>
-    <p><input type="submit" value="確認" /> <input type="reset" value="キャンセル" /></p>
+    <p><input type="submit" value="確認"/> <input type="reset" value="キャンセル"/></p>
 </form>
 </body>
 
