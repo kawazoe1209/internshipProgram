@@ -11,7 +11,6 @@
     <p>口座番号: <span th:text="*{bankAccountNum}"></span></p>
     <input type="hidden" name="bankAccountNum" th:value="*{bankAccountNum}"/>
     <input type="hidden" name="bankName" th:value="*{bankName}" />
-    <input type="hidden" name="money" th:value=1000 />
     <p>
         <input type="submit" value="振込"/>
         <input type="button" value="キャンセル" onclick="window.location='/bankTransfer';"/>
