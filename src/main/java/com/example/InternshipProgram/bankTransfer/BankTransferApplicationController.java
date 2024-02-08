@@ -18,14 +18,14 @@ public class BankTransferApplicationController {
     @GetMapping("/bankTransfer")
     public String bankTransfer(Model model) {
         model.addAttribute("bankTransferApplication", new BankTransferApplicationForm());
-        model.addAttribute("nameOptions", "真田幸村");
+        model.addAttribute("nameOptions", "福岡銀行");
         return "bankTransfer/bankTransferMain";
     }
 
     @PostMapping("/confirmation")
     public String confirmation(@ModelAttribute BankTransferApplicationForm bankTransferApplication, Model model) {
+        model.addAttribute("bankName", bankTransferApplication.getBankName());
         model.addAttribute("bankAccountNum", bankTransferApplication.getBankAccountNum());
-        model.addAttribute("name", bankTransferApplication.getName());
         model.addAttribute("bankTransferApplication",bankTransferApplication);
         return "bankTransfer/transferConfirmation";
     }

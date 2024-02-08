@@ -9,14 +9,14 @@
 <table>
     <thead>
     <tr>
+        <th>金融機関名</th>
         <th>口座番号</th>
-        <th>お客様名</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="BankTransferHistories : ${BankTransferHistories}">
-        <td th:text="${BankTransferHistories.bankAccountNum}">Account Number</td>
-        <td th:text="${BankTransferHistories.name}">Name</td>
+        <td th:text="${BankTransferHistories.bankName}"></td>
+        <td th:text="${BankTransferHistories.bankAccountNum}"></td>
     </tr>
     </tbody>
 </table>

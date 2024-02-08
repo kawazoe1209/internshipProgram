@@ -20,8 +20,8 @@ public class BankTransferRepository {
     }
 
     public void create(BankTransferApplicationForm bankTransferApplication) {
-        String sql = "INSERT INTO bankTransfer_table(bankAccountNum, name, money) VALUES(?, ?, ?)";
-        jdbcTemplate.update(sql, bankTransferApplication.getBankAccountNum(), bankTransferApplication.getName(), bankTransferApplication.getMoney());
+        String sql = "INSERT INTO bankTransfer_table(bankName, bankAccountNum, money) VALUES(?, ?, ?)";
+        jdbcTemplate.update(sql, bankTransferApplication.getBankName(), bankTransferApplication.getBankAccountNum(), bankTransferApplication.getMoney());
     }
 
 }
