@@ -14,7 +14,7 @@ public class BankTransferRepository {
 
     public List<BankTransferHistory> select() {
         return jdbcTemplate.query("""
-                        SELECT * FROM bankTransfer_table ORDER BY money
+                        SELECT * FROM bankTransfer_table
                         """,
                 new DataClassRowMapper<>(BankTransferHistory.class));
     }
