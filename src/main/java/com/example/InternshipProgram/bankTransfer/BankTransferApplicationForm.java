@@ -7,7 +7,8 @@ import lombok.Setter;
 @Getter
 public class BankTransferApplicationForm {
 
-    private String bankAccountNum;
+    private Integer bankAccountNum;
     private String name;
+    private Integer money;
 
 }

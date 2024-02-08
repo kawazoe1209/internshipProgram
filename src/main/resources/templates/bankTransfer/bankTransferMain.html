@@ -7,7 +7,7 @@
 <body>
 <h1>振込フォーム</h1>
 <form action="#" th:action="@{/confirmation}" th:object="${bankTransferApplication}" method="post">
-    <p>口座番号: <input type="text" th:field="*{bankAccountNum}"/></p>
+    <p>口座番号: <input type="number" th:field="*{bankAccountNum}"/></p>
     <p>お名前: <select th:field="*{name}">
         <option th:each="option : ${nameOptions}"
                 th:value="${option}"

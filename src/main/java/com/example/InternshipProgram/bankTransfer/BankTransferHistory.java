@@ -16,7 +16,7 @@ public class BankTransferHistory {
     private String bankAccountType;
     private int bankAccountNum;
     private String name;
-    private String money;
+    private int money;
     private Date transferDateTime;
 }
 
