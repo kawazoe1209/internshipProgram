@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>振込確認画面</h1>
-<form action="#" th:action="@{/transferList}" th:object="${bankTransferApplication}" method="post">
+<form action="#" th:action="@{/completion}" th:object="${bankTransferApplication}" method="post">
     <p>金融機関名: <span th:text="*{bankName}"></span></p>
     <p>口座番号: <span th:text="*{bankAccountNum}"></span></p>
     <input type="hidden" name="bankAccountNum" th:value="*{bankAccountNum}"/>

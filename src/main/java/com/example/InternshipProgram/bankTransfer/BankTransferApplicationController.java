@@ -27,7 +27,13 @@ public class BankTransferApplicationController {
         model.addAttribute("bankName", bankTransferApplication.getBankName());
         model.addAttribute("bankAccountNum", bankTransferApplication.getBankAccountNum());
         model.addAttribute("bankTransferApplication",bankTransferApplication);
-        return "bankTransfer/transferConfirmation";
+        return "bankTransfer/bankTransferConfirmation";
+    }
+
+    @PostMapping("/completion")
+    public String completion(@ModelAttribute BankTransferApplicationForm bankTransferApplicationForm, Model model) {
+        repository.create(bankTransferApplicationForm);
+        return "bankTransfer/bankTransferCompletion";
     }
 
     @PostMapping("/transferList")

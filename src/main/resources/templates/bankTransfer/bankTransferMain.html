@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>振込フォーム</title>
+    <title>振込情報入力画面</title>
     <style>
         .form-control {
             width: 60%;
@@ -38,7 +38,7 @@
     </style>
 </head>
 <body>
-<h1>振込フォーム</h1>
+<h1>振込情報入力</h1>
 <form action="#" th:action="@{/confirmation}" th:object="${bankTransferApplication}" method="post">
     <p><label class="ml-1">金融機関名: <small class="text-danger ml-1">※</small></label><br>
         <select th:field="*{bankName}" class="form-control">
