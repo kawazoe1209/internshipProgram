@@ -39,8 +39,6 @@ public class BankTransferApplicationController {
     @PostMapping("/transferList")
     public String transfer(@ModelAttribute BankTransferApplicationForm bankTransferApplicationForm, Model model) {
         repository.create(bankTransferApplicationForm);
-        List<BankTransferHistory> BankTransferHistories = repository.select();
-        model.addAttribute("BankTransferHistories", BankTransferHistories);
         return "bankTransfer/bankTransferList";
     }
 

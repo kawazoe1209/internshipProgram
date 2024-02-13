@@ -29,11 +29,9 @@ public class InvestmentTrustApplicationController {
         model.addAttribute("investmentTrustApplication",trustApplicationForm);
         return "investmentTrust/investmentTrustConfirmation";
     }
-
     @PostMapping("/investmentTrustCompletion")
     public String completion(@ModelAttribute InvestmentTrustApplicationForm trustApplicationForm, Model model) {
         repository.create(trustApplicationForm);
         return "investmentTrust/investmentTrustCompletion";
     }
-
 }

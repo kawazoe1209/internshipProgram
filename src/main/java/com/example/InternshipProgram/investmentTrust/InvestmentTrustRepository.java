@@ -12,10 +12,9 @@ public class InvestmentTrustRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public List<InvestmentTrustHistory> select() {
-        return jdbcTemplate.query("""
-                        SELECT * FROM investmentTrust_table
-                        """,
-                new DataClassRowMapper<>(InvestmentTrustHistory.class));
+    public void create(InvestmentTrustApplicationForm trustApplicationForm) {
+        String sql = "INSERT INTO investmentTrust_table(bankName, bankAccountNum, money) VALUES(?, ?, ?)";
+        jdbcTemplate.update(sql, trustApplicationForm.getBankName(), trustApplicationForm.getBankAccountNum(), trustApplicationForm.getMoney());
     }
+
 }
