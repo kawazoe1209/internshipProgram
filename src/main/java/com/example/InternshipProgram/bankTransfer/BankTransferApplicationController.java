@@ -22,7 +22,7 @@ public class BankTransferApplicationController {
         return "bankTransfer/bankTransferMain";
     }
 
-    @PostMapping("/confirmation")
+    @PostMapping("/bankTransferConfirmation")
     public String confirmation(@ModelAttribute BankTransferApplicationForm bankTransferApplication, Model model) {
         model.addAttribute("bankName", bankTransferApplication.getBankName());
         model.addAttribute("bankAccountNum", bankTransferApplication.getBankAccountNum());
@@ -30,7 +30,7 @@ public class BankTransferApplicationController {
         return "bankTransfer/bankTransferConfirmation";
     }
 
-    @PostMapping("/completion")
+    @PostMapping("/bankTransferCompletion")
     public String completion(@ModelAttribute BankTransferApplicationForm bankTransferApplicationForm, Model model) {
         repository.create(bankTransferApplicationForm);
         return "bankTransfer/bankTransferCompletion";
