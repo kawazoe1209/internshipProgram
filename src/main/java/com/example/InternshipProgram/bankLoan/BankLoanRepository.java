@@ -18,10 +18,4 @@ public class BankLoanRepository {
                         """,
                 new DataClassRowMapper<>(BankLoanHistory.class));
     }
-
-    public void create(BankLoanApplicationForm bankLoanApplicationForm) {
-        String sql = "INSERT INTO bankLoan_table(bankName, bankAccountNum, money) VALUES(?, ?, ?)";
-        jdbcTemplate.update(sql, bankLoanApplicationForm.getBankName(), bankLoanApplicationForm.getBankAccountNum(), bankLoanApplicationForm.getMoney());
-    }
-
 }

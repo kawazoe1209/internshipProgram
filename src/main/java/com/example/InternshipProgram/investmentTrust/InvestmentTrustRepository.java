@@ -18,10 +18,4 @@ public class InvestmentTrustRepository {
                         """,
                 new DataClassRowMapper<>(InvestmentTrustHistory.class));
     }
-
-    public void create(InvestmentTrustApplicationForm trustApplicationForm) {
-        String sql = "INSERT INTO investmentTrust_table(bankName, bankAccountNum, money) VALUES(?, ?, ?)";
-        jdbcTemplate.update(sql, trustApplicationForm.getBankName(), trustApplicationForm.getBankAccountNum(), trustApplicationForm.getMoney());
-    }
-
 }
