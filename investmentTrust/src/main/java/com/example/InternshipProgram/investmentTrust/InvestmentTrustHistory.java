@@ -10,6 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InvestmentTrustHistory {
+    private String fundName;
     private String bankName;
     private String branchName;
     private String bankAccountType;
