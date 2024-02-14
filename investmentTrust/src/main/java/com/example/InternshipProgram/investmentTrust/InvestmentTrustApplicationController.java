@@ -17,7 +17,6 @@ public class InvestmentTrustApplicationController {
 
     @GetMapping("/investmentTrust")
     public String bankTransfer(Model model) {
-        model.addAttribute("fundName", FUND_NAME);
         model.addAttribute("investmentTrustApplication", new InvestmentTrustApplicationForm());
         model.addAttribute("nameOptions", "福岡銀行");
         return "investmentTrust/investmentTrustMain";
@@ -35,10 +34,4 @@ public class InvestmentTrustApplicationController {
         repository.create(trustApplicationForm);
         return "investmentTrust/investmentTrustCompletion";
     }
-
-    public final static List<String> FUND_NAME =
-    List.of(
-            "とってもいい日経平均インデックス",
-            "とってもいいS&P500"
-    );
 }

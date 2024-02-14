@@ -65,9 +65,9 @@
 
     <form action="#" th:action="@{/investmentTrustConfirmation}" th:object="${investmentTrustApplication}" method="post">
         <label>投資信託銘柄の選択</label>
-        <div th:each="fundName : ${fundName}">
-            <input type="radio" th:value="${fundName}" th:field="*{fundName}" />
-            <label th:text="${fundName}"></label>
+        <div>
+            <input type="radio" th:value="とってもいい日経平均インデックス" th:field="*{fundName}" />
+            <label>とってもいい日経平均インデックス</label>
         </div>
         <p><label class="ml-1">金融機関名: <small class="text-danger ml-1">※</small></label><br>
             <select th:field="*{bankName}" class="form-control">
