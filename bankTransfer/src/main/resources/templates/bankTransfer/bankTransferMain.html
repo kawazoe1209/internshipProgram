@@ -64,7 +64,7 @@
     <h1>振込情報入力</h1>
     <form action="#" th:action="@{/bankTransferConfirmation}" th:object="${bankTransferApplication}" method="post">
         <p><label class="ml-1">金融機関名: <small class="text-danger ml-1">※</small></label><br>
-            <select th:field="*{bankName}" class="form-control">
+            <select th:field="*{bankName}" id="bankName" class="form-control">
                 <option th:each="option : ${nameOptions}"
                         th:value="${option}"
                         th:text="${option}">選択肢
@@ -86,6 +86,7 @@
         <script>
             function checkForm() {
 
+              var bankName = document.getElementById("bankName");
               var bankBranchName = document.getElementById("bankBranchName");
               var bankSubjectName = document.getElementById("bankSubjectName");
               var bankAccountName = document.getElementById("bankAccountName");
@@ -93,7 +94,7 @@
               var money = document.getElementById("money");
               var transferDate = document.getElementById("transferDate");
 
-              if (bankBranchName.value === "") {
+              if (bankName.value === "" || bankBranchName.value === ""|| bankSubjectName.value ==="" || bankAccountName.value ==="" ||bankAccountNum.value === "" || money.value === "" || transferDate.value === "") {
                 alert("未入力の項目があります");
                 return false;
               }
