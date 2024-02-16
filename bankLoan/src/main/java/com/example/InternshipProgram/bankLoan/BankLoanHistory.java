@@ -15,6 +15,6 @@ public class BankLoanHistory {
     private String name;
     private Integer loanAmount;
     private Integer annualIncome;
-    private Integer interestRate;
+    private String interestRate;
 }
 
