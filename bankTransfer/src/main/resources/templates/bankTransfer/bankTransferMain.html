@@ -70,11 +70,44 @@
                         th:text="${option}">選択肢
                 </option>
             </select></p>
+        <p><label class="ml-1">支店名: <small class="text-danger ml-1">※</small></label><br>
+            <input type="text" th:field="*{bankBranchName}" id="bankBranchName" class="form-control" /></p>
+        <p><label class="ml-1">科目名: <small class="text-danger ml-1">※</small></label><br>
+            <input type="text" th:field="*{bankSubjectName}" id="bankSubjectName" class="form-control" /></p>
         <p><label class="ml-1">口座番号: <small class="text-danger ml-1">※</small></label><br>
-            <input type="number" th:field="*{bankAccountNum}" class="form-control" placeholder="1234567"/></p>
-        <p style="text-align: center;"><input type="submit" value="確認"
-                                              class="form-control-button form-confirmation-button"/>
+            <input type="number" th:field="*{bankAccountNum}" id="bankAccountNum" class="form-control" placeholder="1234567"/></p>
+        <p><label class="ml-1">口座名義: <small class="text-danger ml-1">※</small></label><br>
+            <input type="text" th:field="*{bankAccountName}" id="bankAccountName" class="form-control" /></p>
+        <p><label class="ml-1">金額: <small class="text-danger ml-1">※</small></label><br>
+            <input type="number" th:field="*{money}" id="money" class="form-control" /></p>
+        <p><label class="ml-1">振込指定日: <small class="text-danger ml-1">※</small></label><br>
+            <input type="text" th:field="*{transferDate}" id="transferDate" class="form-control" /></p>
+
+        <script>
+            function checkForm() {
+
+              var bankBranchName = document.getElementById("bankBranchName");
+              var bankSubjectName = document.getElementById("bankSubjectName");
+              var bankAccountName = document.getElementById("bankAccountName");
+              var bankAccountNum = document.getElementById("bankAccountNum");
+              var money = document.getElementById("money");
+              var transferDate = document.getElementById("transferDate");
+
+              if (bankBranchName.value === "") {
+                alert("未入力の項目があります");
+                return false;
+              }
+              return true;
+
+            }
+        </script>
+        <p style="text-align: center;">
+        <input type="submit" value="確認" class="form-control-button form-clear-button" onclick="return checkForm()"/>
             <input type="reset" value="クリア" class="form-control-button form-clear-button"/></p>
+
+            <!--<input type="submit" value="確認" class="form-control-button form-confirmation-button"/>  -->
+
+
     </form>
 </div>
 </body>
