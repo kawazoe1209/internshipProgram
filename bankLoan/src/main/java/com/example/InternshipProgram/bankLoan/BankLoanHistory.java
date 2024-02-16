@@ -9,11 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BankLoanHistory {
     private String bankName;
-    private String branchName;
-    private String bankAccountType;
     private Integer bankAccountNum;
+    private String branchName;
+    private String bankKinds;
     private String name;
-    private String tradingName;
-    private Integer money;
+    private Integer loanAmount;
+    private Integer annualIncome;
+    private Integer interestRate;
 }
 

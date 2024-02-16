@@ -8,7 +8,12 @@ import lombok.Setter;
 public class BankLoanApplicationForm {
     private String bankName;
     private Integer bankAccountNum;
-    private Integer money;
+    private String branchName;
+    private String bankKinds;
+    private String name;
+    private Integer loanAmount;
+    private Integer annualIncome;
+    private Integer interestRate;
 
     public void setBankName(String bankName) {
         this.bankName = bankName;
@@ -26,11 +31,51 @@ public class BankLoanApplicationForm {
         return this.bankAccountNum;
     }
 
-    public void setMoney(Integer money) {
-        this.money = money;
+    public void setBankKinds(String bankKinds) {
+        this.bankKinds = bankKinds;
     }
 
-    public Integer getMoney(){
-        return this.money;
+    public String getBankKinds(){
+        return this.bankKinds;
+    }
+
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
+    }
+
+    public String getBranchName(){
+        return this.branchName;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public void setLoanAmount(Integer loanAmount) {
+        this.loanAmount = loanAmount;
+    }
+
+    public Integer getLoanAmount(){
+        return this.loanAmount;
+    }
+
+    public void setAnnualIncome(Integer annualIncome) {
+        this.annualIncome = annualIncome;
+    }
+
+    public Integer getAnnualIncome(){
+        return this.annualIncome;
+    }
+
+    public void setInterestRate(Integer interestRate) {
+        this.interestRate = interestRate;
+    }
+
+    public Integer getInterestRate(){
+        return this.interestRate;
     }
 }
