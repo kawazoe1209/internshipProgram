@@ -8,13 +8,61 @@
 <h1>振込確認画面</h1>
 <form action="#" th:action="@{/bankTransferCompletion}" th:object="${bankTransferApplication}" method="post">
     <p>金融機関名: <span th:text="*{bankName}"></span></p>
+    <p>支店名: <span th:text="*{bankBranchName}"></span></p>
+    <p>科目名: <span th:text="*{bankSubjectName}"></span></p>
     <p>口座番号: <span th:text="*{bankAccountNum}"></span></p>
+    <p>口座名義: <span th:text="*{bankAccountName}"></span></p>
+    <p>金額: <span th:text="*{money}"></span></p>
+    <p>振込指定日: <span th:text="*{transferDate}"></span></p>
     <input type="hidden" name="bankAccountNum" th:value="*{bankAccountNum}"/>
     <input type="hidden" name="bankName" th:value="*{bankName}" />
+    <input type="hidden" name="bankBranchName" th:value="*{bankBranchName}" />
+    <input type="hidden" name="bankSubjectName" th:value="*{bankSubjectName}" />
+    <input type="hidden" name="bankAccountName" th:value="*{bankAccountName}" />
+    <input type="hidden" name="money" th:value="*{money}" />
+    <input type="hidden" name="transferDate" th:value="*{transferDate}" />
+
+    <!--<script th:inline="javascript">
+        /*<![CDATA[*/
+        function showMessage(){
+         var message = "振込みしますか？";
+         alert(message);
+        }
+        /*]]>*/
+    </script>-->
+
+    <!--<script type="text/javascript" src="main.js"></script>
+    <input type="button" value="振込み" onclick="main();"/>
+    <script>
+        function main()
+        {
+        var flag = confirm("振り込みますか？");
+        if (flag == true)
+        {
+        <input type ="submit" value="振込み">
+        alert("振り込みました");
+        }
+        else if (flag == false)
+        {
+        alert ("キャンセルしました")
+        }
+        }
+    </script>
+    <button onclick="confirm('振込みしますか')">振込する</button>-->
     <p>
-        <input type="submit" value="振込"/>
+        <input id="test" type="submit" value="振込"/>
         <input type="button" value="キャンセル" onclick="window.location='/bankTransfer';"/>
     </p>
+    <script th:inline="javascript">
+        console.log("A")
+        const submitButton = document.getElementById("test")
+        submitButton.addEventListener('click', (e) => {
+          console.log("B")
+          if (!confirm("振り込みますか？")) {
+            e.preventDefault();
+          }
+        }, false)
+    </script>
 </form>
 </body>
 </html>
