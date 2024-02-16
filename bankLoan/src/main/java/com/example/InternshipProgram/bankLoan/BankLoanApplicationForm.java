@@ -13,7 +13,7 @@ public class BankLoanApplicationForm {
     private String name;
     private Integer loanAmount;
     private Integer annualIncome;
-    private Integer interestRate;
+    private String interestRate;
 
     public void setBankName(String bankName) {
         this.bankName = bankName;
@@ -71,11 +71,11 @@ public class BankLoanApplicationForm {
         return this.annualIncome;
     }
 
-    public void setInterestRate(Integer interestRate) {
+    public void setInterestRate(String interestRate) {
         this.interestRate = interestRate;
     }
 
-    public Integer getInterestRate(){
+    public String getInterestRate(){
         return this.interestRate;
     }
 }

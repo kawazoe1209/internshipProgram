@@ -25,6 +25,10 @@ public class BankLoanApplicationController {
         kindsOptions.put(2, "定期預金");
         kindsOptions.put(3, "当座預金");
         model.addAttribute("kindsOptions",kindsOptions);
+        Map<Integer, String> rateOptions = new HashMap<>();
+        rateOptions.put(1, "固定金利");
+        rateOptions.put(2, "変動金利");
+        model.addAttribute("rateOptions",rateOptions);
         return "bankLoan/bankLoanMain";
     }
 
