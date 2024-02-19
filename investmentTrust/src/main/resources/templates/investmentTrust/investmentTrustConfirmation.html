@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>投資信託申込確認画面</title>
+    <!--
     <script th:inline="javascript">
         /*<![CDATA[*/
         function showMessage(){
@@ -11,6 +12,7 @@
         }
         /*]]>*/
     </script>
+    -->
 </head>
 <body>
 <h1>投資信託申込確認画面</h1>
@@ -38,9 +40,20 @@
     -->
     <input type="hidden" name="money" th:value="*{money}"/>
     <p>
-        <input type="submit" value="申込" onclick="showMessage()"/>
+        <input id="test" type="submit" value="申込"/>
         <input type="button" value="キャンセル" onclick="window.location='/investmentTrust';"/>
     </p>
 </form>
+<script th:inline="javascript">
+    console.log("A")
+    const submitButton = document.getElementById("test")
+    submitButton.addEventListener('click', (e) => {
+      console.log("B")
+      if (!confirm("操作を実行します")) {
+        e.preventDefault();
+      }
+    }, false)
+</script>
+
 </body>
 </html>
