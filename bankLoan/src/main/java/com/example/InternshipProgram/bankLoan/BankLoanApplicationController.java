@@ -19,15 +19,20 @@ public class BankLoanApplicationController {
     @GetMapping("/bankLoan")
     public String bankTransfer(Model model) {
         model.addAttribute("bankLoanApplication", new BankLoanApplicationForm());
-        model.addAttribute("nameOptions", "福岡銀行");
+        Map<Integer, String> nameOptions = new HashMap<>();
+        nameOptions.put(1, "選択してください");
+        nameOptions.put(2, "福岡銀行");
+        model.addAttribute("nameOptions",nameOptions);
         Map<Integer, String> kindsOptions = new HashMap<>();
-        kindsOptions.put(1, "普通預金");
-        kindsOptions.put(2, "定期預金");
-        kindsOptions.put(3, "当座預金");
+        kindsOptions.put(1, "選択してください");
+        kindsOptions.put(2, "普通預金");
+        kindsOptions.put(3, "定期預金");
+        kindsOptions.put(4, "当座預金");
         model.addAttribute("kindsOptions",kindsOptions);
         Map<Integer, String> rateOptions = new HashMap<>();
-        rateOptions.put(1, "固定金利");
-        rateOptions.put(2, "変動金利");
+        rateOptions.put(1, "選択してください");
+        rateOptions.put(2, "固定金利");
+        rateOptions.put(3, "変動金利");
         model.addAttribute("rateOptions",rateOptions);
         return "bankLoan/bankLoanMain";
     }
