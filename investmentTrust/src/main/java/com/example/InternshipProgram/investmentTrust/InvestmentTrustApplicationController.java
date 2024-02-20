@@ -22,7 +22,7 @@ public class InvestmentTrustApplicationController {
     @GetMapping("/investmentTrust")
     public String bankTransfer(Model model) {
         model.addAttribute("investmentTrustApplication", new InvestmentTrustApplicationForm());
-        model.addAttribute("nameOptions", "福岡銀行");
+        model.addAttribute("nameOptions", "にじそら銀行");
         model.addAttribute("branchNameOptions1", "香椎支店");
         model.addAttribute("branchNameOptions2", "千早支店");
         model.addAttribute("bankAccountTypeOptions1", "普通");
