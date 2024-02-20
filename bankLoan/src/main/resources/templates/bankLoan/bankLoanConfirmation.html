@@ -3,18 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <title>ローン申込確認画面</title>
+    <style>
+        body {
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        padding-top: 40px;
+        padding-bottom: 50px;
+        justify-content: center;
+        align-items: center;
+        min-height: 85vh;
+        overflow: auto;
+        }
+
+        .content {
+         background-color: #ffffff;
+         width: 40%;
+         padding: 30px;
+         border-radius: 10px;
+         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+         min-height: 50vh;
+         overflow: auto;
+        }
+
+        table td {
+            padding: 6px 15px;
+            border: dashed 1px lightBlue;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: solid 2px lightBlue;
+            padding-left: 100px;
+        }
+    </style>
 </head>
 <body>
+<div class="content">
 <h1>ローン申込確認画面</h1>
 <form action="#" th:action="@{/bankLoanCompletion}" th:object="${bankLoanApplication}" method="post">
-    <p>金融機関名: <span th:text="*{bankName}"></span></p>
-    <p>支店名: <span th:text="*{branchName}"></span></p>
-    <p>科目名: <span th:text="*{bankKinds}"></span></p>
-    <p>口座番号: <span th:text="*{bankAccountNum}"></span></p>
-    <p>債務者名: <span th:text="*{name}"></span></p>
-    <p>借入金額: <span th:text="*{loanAmount}"></span></p>
-    <p>借入年収: <span th:text="*{annualIncome}"></span></p>
-    <p>金利: <span th:text="*{interestRate}"></span></p>
+    <table>
+        <tr>
+            <td>金融機関名</td> <td><span th:text="*{bankName}"></span></td>
+        </tr>
+        <tr>
+            <td>支店名</td><td><span th:text="*{branchName}"></span></td>
+        </tr>
+        <tr>
+            <td>科目名</td><td> <span th:text="*{bankKinds}"></span></td>
+        </tr>
+        <tr>
+            <td>口座番号</td><td><span th:text="*{bankAccountNum}"></span></td>
+        </tr>
+        <tr>
+            <td>債務者名</td><td><span th:text="*{name}"></span></td>
+        </tr>
+        <tr>
+            <td>借入金額</td><td><span th:text="*{loanAmount}"></span></td>
+        </tr>
+        <tr>
+            <td>借入年収</td><td><span th:text="*{annualIncome}"></span></td>
+        </tr>
+        <tr>
+            <td>金利</td><td><span th:text="*{interestRate}"></span></td>
+        </tr>
+    </table>
     <input type="hidden" name="bankName" th:value="*{bankName}" />
     <input type="hidden" name="branchName" th:value="*{branchName}" />
     <input type="hidden" name="bankKinds" th:value="*{bankKinds}"/>
@@ -39,5 +93,6 @@
       }
     })
 </script>
+</div>
 </body>
 </html>
