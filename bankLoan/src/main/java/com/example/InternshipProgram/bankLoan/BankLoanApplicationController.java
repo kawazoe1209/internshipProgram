@@ -21,7 +21,9 @@ public class BankLoanApplicationController {
         model.addAttribute("bankLoanApplication", new BankLoanApplicationForm());
         Map<Integer, String> nameOptions = new HashMap<>();
         nameOptions.put(1, "選択してください");
-        nameOptions.put(2, "福岡銀行");
+        nameOptions.put(2, "○○銀行");
+        nameOptions.put(3, "△△銀行");
+        nameOptions.put(4, "××銀行");
         model.addAttribute("nameOptions",nameOptions);
         Map<Integer, String> kindsOptions = new HashMap<>();
         kindsOptions.put(1, "選択してください");

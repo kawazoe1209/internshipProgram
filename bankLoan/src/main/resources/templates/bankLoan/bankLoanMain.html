@@ -16,15 +16,7 @@
         min-height: 85vh;
         overflow: auto;
         }
-        header {
-            position: fixed;
-            top: 0;
-            display: flex;
-            width: 100%;
-            height: 70px;
-            background-color: lightBlue;
-            align-items: center;
-        }
+
         .content {
          margin:80px 0 0 0;
          background-color: #ffffff;
@@ -35,15 +27,38 @@
          min-height: 50vh;
          overflow: auto;
         }
+
+        /* フォーム */
         .form-control {
-            width: 50%;
+            width: 60%;
             padding: 8px;
             margin: 5px 0;
             box-sizing: border-box;
             position: relative;
             bottom: 25px;
+            z-index: 10;
         }
+        .ml-1 {
+        display: flex;
+        font-weight: bold;
+        width: auto;
+        }
+        .text-danger {
+        margin-left: 7px;
+        padding: 3px 6px;
+        border-radius: 3px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #166ab5;
+        bottom: 2px;
+        position: relative;
+        z-index: 10;
+        }
+
+         /* フォームボタン */
         .form-control-button {
+        font-size: 14px;
         width: 80px;
         padding: 10px 20px;
         margin-top: 10px;
@@ -66,6 +81,18 @@
         background-color: #CCCCCC;
         }
 
+         /* ヘッダー */
+        header {
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            display: flex;
+            width: 100%;
+            height: 70px;
+            background-color: lightBlue;
+            align-items: center;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+        }
         .title {
          margin-right: auto;
          padding-left: 30px;
@@ -76,22 +103,16 @@
         display: inline-block;
         padding: 10px;
         }
-        .ml-1 {
-        display: flex;
-        font-weight: bold;
-        width: auto;
+        .a {
+        text-decoration: none;
+        color: #4b4b4b;
         }
-
-        .text-danger {
-        margin-left: 7px;
-        padding: 3px 6px;
-        border-radius: 3px;
+        .nav{
+        margin: 0 0 0 auto;
+        }
+        .li {
+        margin: 0 0 0 10px;
         font-size: 14px;
-        font-weight: bold;
-        color: #fff;
-        background-color: #166ab5;
-        bottom: 2px;
-        position: relative;
         }
 
 
@@ -100,10 +121,13 @@
 <body>
 
 <header>
-    <h1 class="title">福岡銀行（仮）</h1>
+    <h1 class="title">○○フィナンシャルグループ</h1>
     <nav class="nav">
         <ul class="menu-group">
-            <li class="menu-item"><a href="/bankLoan">クリア</a></li>
+            <li class="menu-item"><a href="/bankLoan">画面クリア</a></li>
+            <li class="menu-item"><a href="/bankTransfer">振込</a></li>
+            <li class="menu-item"><a href="/bankLoan">ローン</a></li>
+            <li class="menu-item"><a href="/banktmentTrust">投信</a></li>
         </ul>
     </nav>
 </header>
@@ -111,14 +135,14 @@
     <h1>ローン申込情報入力</h1>
     <form action="#" th:action="@{/bankLoanConfirmation}" th:object="${bankLoanApplication}" method="post" name="loanForm" onSubmit="return check()">
         <p><label class="ml-1">金融機関名 <small class="text-danger ml-1">必須</small></label><br>
-            <select th:field="*{bankName}" class="form-control" id="fieldBankName">
+            <select th:field="*{bankName}" class="form-control" id="fieldBankName" onchange="bankChange()">
                 <option th:each="option : ${nameOptions}"
                         th:value="${option.value}"
                         th:text="${option.value}">選択肢
                 </option>
             </select></p>
         <p><label class="ml-1">支店名 <small class="text-danger ml-1">必須</small></label><br>
-            <input type="text" th:field="*{branchName}" id="fieldBranchName" class="form-control" placeholder="テスト" oninput="branchNameChange()"/></p>
+            <input type="text" th:field="*{branchName}" id="fieldBranchName" class="form-control" placeholder="〇〇支店" oninput="branchNameChange()"/></p>
         <p><label class="ml-1">科目名 <small class="text-danger ml-1">必須</small></label><br>
             <select th:field="*{bankKinds}" class="form-control" id="fieldBankKinds" onchange="bankNameChange()">
                 <option th:each="option : ${kindsOptions}"
@@ -127,13 +151,13 @@
                 </option>
             </select></p>
         <p><label class="ml-1">口座番号 <small class="text-danger ml-1">必須</small></label><br>
-            <input type="number" oninput="bankNumChange(); javascript: this.value = this.value.slice(0, 8);" th:field="*{bankAccountNum}" id="fieldBankAccountNum" class="form-control" placeholder="1234567" /></p>
+            <input type="number" oninput="bankNumChange(); javascript: this.value = this.value.slice(0, 7);" th:field="*{bankAccountNum}" id="fieldBankAccountNum" class="form-control" placeholder="半角数字" /></p>
         <p><label class="ml-1">債務者名 <small class="text-danger ml-1">必須</small></label><br>
-            <input type="text" th:field="*{name}" id="fieldName" class="form-control" placeholder="名前" oninput="nameChange()"/></p>
+            <input type="text" th:field="*{name}" id="fieldName" class="form-control" placeholder="名前（name）" oninput="nameChange()"/></p>
         <p><label class="ml-1">借入金額 <small class="text-danger ml-1">必須</small></label><br>
-            <input type="number" th:field="*{loanAmount}" id="fieldLoanAmount" class="form-control" placeholder="1234567" oninput="loanAmountChange()"/></p>
+            <input type="number" th:field="*{loanAmount}" id="fieldLoanAmount" class="form-control" placeholder="半角数字" oninput="loanAmountChange()"/></p>
         <p><label class="ml-1">借入年収 <small class="text-danger ml-1">必須</small></label><br>
-            <input type="number" th:field="*{annualIncome}" id="fieldAnnualIncome" class="form-control" placeholder="1234567" oninput="incomeChange()"/></p>
+            <input type="number" th:field="*{annualIncome}" id="fieldAnnualIncome" class="form-control" placeholder="半角数字" oninput="incomeChange()"/></p>
         <p><label class="ml-1">金利: <small class="text-danger ml-1">必須</small></label><br>
             <select th:field="*{interestRate}" class="form-control" id="fieldInterestRate">
                 <option th:each="option : ${rateOptions}"
@@ -181,15 +205,17 @@
             }
             console.log("B")
             if(flag){
-                window.alert('必須項目に未入力がありました'); // 入力漏れがあれば警告ダイアログを表示
+                window.alert('必須項目に未入力がありました!!!!!'); // 入力漏れがあれば警告ダイアログを表示
+                e.preventDefault();// 送信を中止
+            } else if(document.getElementById("fieldBranchName").value.indexOf("支店") == -1){
+                window.alert('「支店」まで入力してください'); // 入力漏れがあれば警告ダイアログを表示
                 e.preventDefault();// 送信を中止
             }
-            else{
-            // 送信を実行
-            }
+            console.log("CC")
+            e.preventDefault();// 送信を中止
         })
 
-        function bankNameChange(){
+        function bankChange(){
             if(!document.getElementById("fieldBankName").value == "選択してください"){
                 console.log("A")
                 document.getElementById("fieldBankName").style.backgroundColor = 'lightBlue';
