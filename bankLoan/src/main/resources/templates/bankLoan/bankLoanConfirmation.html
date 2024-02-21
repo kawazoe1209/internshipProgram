@@ -3,18 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <title>ローン申込確認画面</title>
+    <style>
+        body {
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        padding-top: 20px;
+        padding-bottom: 50px;
+        justify-content: center;
+        align-items: center;
+        min-height: 85vh;
+        overflow: auto;
+        }
+
+        header {
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            display: flex;
+            width: 100%;
+            height: 70px;
+            background-color: lightBlue;
+            align-items: center;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+        }
+
+        .content {
+         text-align: center;
+         background-color: #ffffff;
+         width: 40%;
+         padding: 40px;
+         border-radius: 10px;
+         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+         min-height: 50vh;
+         overflow: auto;
+        }
+
+        table td {
+            padding: 6px 30px;
+            border: dashed 1px lightBlue;
+        }
+
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            border: solid 2px lightBlue;
+            padding-left: 100px;
+        }
+
+        .control-button {
+        font-size: 14px;
+        width: 80px;
+        padding: 10px 20px;
+        margin-top: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        }
+        .cancel-button {
+        font-size: 14px;
+        width: 120px;
+        padding: 10px 20px;
+        margin-top: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        }
+        #test {
+        color: white;
+        background-color: #2185D0;
+        }
+        #test:hover {
+        background-color: #1678c2;
+        }
+        #back:hover {
+        background-color: #CCCCCC;
+        }
+        #cancel:hover {
+        background-color: #CCCCCC;
+        }
+
+        .title {
+         margin-right: auto;
+         padding-left: 30px;
+        }
+        .menu-item {
+        list-style: none;
+        display: inline-block;
+        padding: 10px;
+        }
+        .a {
+        text-decoration: none;
+        color: #4b4b4b;
+        }
+        .nav{
+        margin: 0 0 0 auto;
+        }
+        .li {
+        margin: 0 0 0 10px;
+        font-size: 14px;
+        }
+
+
+    </style>
 </head>
 <body>
+<header>
+    <h1 class="title">○○フィナンシャルグループ</h1>
+    <nav class="nav">
+        <ul class="menu-group">
+            <li class="menu-item"><a href="/bankTransfer">振込</a></li>
+            <li class="menu-item"><a href="/bankLoan">ローン</a></li>
+            <li class="menu-item"><a href="/banktmentTrust">投信</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="content">
 <h1>ローン申込確認画面</h1>
 <form action="#" th:action="@{/bankLoanCompletion}" th:object="${bankLoanApplication}" method="post">
-    <p>金融機関名: <span th:text="*{bankName}"></span></p>
-    <p>支店名: <span th:text="*{branchName}"></span></p>
-    <p>科目名: <span th:text="*{bankKinds}"></span></p>
-    <p>口座番号: <span th:text="*{bankAccountNum}"></span></p>
-    <p>債務者名: <span th:text="*{name}"></span></p>
-    <p>借入金額: <span th:text="*{loanAmount}"></span></p>
-    <p>借入年収: <span th:text="*{annualIncome}"></span></p>
-    <p>金利: <span th:text="*{interestRate}"></span></p>
+    <table>
+        <tr>
+            <td>金融機関名</td> <td><span th:text="*{bankName}"></span></td>
+        </tr>
+        <tr>
+            <td>支店名</td><td><span th:text="*{branchName}"></span></td>
+        </tr>
+        <tr>
+            <td>科目名</td><td> <span th:text="*{bankKinds}"></span></td>
+        </tr>
+        <tr>
+            <td>口座番号</td><td><span th:text="*{bankAccountNum}"></span></td>
+        </tr>
+        <tr>
+            <td>債務者名</td><td><span th:text="*{name}"></span></td>
+        </tr>
+        <tr>
+            <td>借入金額</td><td><span th:text="${T(java.lang.String).format('%,d', loanAmount)}"></span>円</td>
+        </tr>
+        <tr>
+            <td>借入年収</td><td><span th:text="${T(java.lang.String).format('%,d', annualIncome)}"></span>円</td>
+        </tr>
+        <tr>
+            <td>金利</td><td><span th:text="*{interestRate}"></span></td>
+        </tr>
+    </table>
     <input type="hidden" name="bankName" th:value="*{bankName}" />
     <input type="hidden" name="branchName" th:value="*{branchName}" />
     <input type="hidden" name="bankKinds" th:value="*{bankKinds}"/>
@@ -24,13 +158,13 @@
     <input type="hidden" name="annualIncome" th:value="*{annualIncome}"/>
     <input type="hidden" name="interestRate" th:value="*{interestRate}"/>
     <p>
-        <input id="test" type="submit" value="申込"/>
-        <input type="button" value="キャンセル" onclick="window.location='/bankLoan';"/>
+        <input id="test" type="submit" class="control-button" value="申込"/>
+        <input id="back" type="button" class="control-button" value="修正" onclick="history.back()"/>
+        <input id="cancel" type="button" class="cancel-button" value="キャンセル"/>
     </p>
 </form>
 
 <script th:inline="javascript">
-    console.log("A")
     const submitButton = document.getElementById("test")
     submitButton.addEventListener('click', (e) => {
       console.log("B")
@@ -39,5 +173,19 @@
       }
     })
 </script>
+
+    <script>
+        let button = document.getElementById('cancel');
+        button.addEventListener('click', cancelButton);
+        console.log("A");
+
+        function cancelButton(){
+        console.log("B");
+            if (confirm("入力内容が初期化されますがよろしいですか？")) {
+                window.location.href='/bankLoan';
+            }
+        }
+    </script>
+</div>
 </body>
 </html>
