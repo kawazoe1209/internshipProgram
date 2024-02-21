@@ -7,13 +7,13 @@
 <body>
 <h1>振込確認画面</h1>
 <form action="#" th:action="@{/bankTransferCompletion}" th:object="${bankTransferApplication}" method="post">
-    <p>金融機関名: <span th:text="*{bankName}"></span></p>
-    <p>支店名: <span th:text="*{bankBranchName}"></span></p>
-    <p>科目名: <span th:text="*{bankSubjectName}"></span></p>
-    <p>口座番号: <span th:text="*{bankAccountNum}"></span></p>
-    <p>口座名義: <span th:text="*{bankAccountName}"></span></p>
-    <p>金額: <span th:text="*{money}"></span></p>
-    <p>振込指定日: <span th:text="*{transferDate}"></span></p>
+    <p>金融機関名:<br><div class="box"><span th:text="*{bankName}"></span> 銀行<input type="checkbox" onchange="change()" class="checkbox" id="check1" value="atai"></div> </p>
+    <p>支店名: <br><div class="box"><span th:text="*{bankBranchName}"></span>  <input type="checkbox" onchange="change()" class="checkbox" id="check2" value="atai"></div></p>
+    <p>科目名: <br><div class="box"><span th:text="*{bankSubjectName}"></span> 預金 <input type="checkbox" onchange="change()" class="checkbox" id="check3" value="atai"></div></p>
+    <p>口座番号: <br><div class="box"><span th:text="*{bankAccountNum}"></span> <input type="checkbox" onchange="change()" class="checkbox" id="check4" value="atai"></div></p>
+    <p>口座名義: <br><div class="box"><span th:text="*{bankAccountName}"></span> <input type="checkbox" onchange="change()" class="checkbox" id="check5" value="atai"></div></p>
+    <p>金額: <br><div class="box"><span th:text="*{money}"></span> 円 <input type="checkbox" onchange="change()" class="checkbox" id="check6" value="atai"></div></p>
+    <p>振込指定日: <br><div class="box"><span th:text="*{transferDate}"></span> <input type="checkbox" onchange="change()" class="checkbox" id="check7" value="atai"></div></p>
     <input type="hidden" name="bankAccountNum" th:value="*{bankAccountNum}"/>
     <input type="hidden" name="bankName" th:value="*{bankName}" />
     <input type="hidden" name="bankBranchName" th:value="*{bankBranchName}" />
@@ -49,20 +49,85 @@
         }
     </script>
     <button onclick="confirm('振込みしますか')">振込する</button>-->
-    <p>
-        <input id="test" type="submit" value="振込"/>
-        <input type="button" value="キャンセル" onclick="window.location='/bankTransfer';"/>
-    </p>
-    <script th:inline="javascript">
-        console.log("A")
-        const submitButton = document.getElementById("test")
-        submitButton.addEventListener('click', (e) => {
-          console.log("B")
-          if (!confirm("振り込みますか？")) {
-            e.preventDefault();
+        <p>
+            <input id="test" disabled type="submit" value="振込" style="font-size:20px;" class="button"  />
+            <input type="button" value="キャンセル" style="font-size:20px;" class="button" onclick="window.location='/bankTransfer';"/>
+        </p>
+    <script type="text/javascript">
+        function change() {
+          if  ((document.getElementById("check1").checked)
+            && (document.getElementById("check2").checked)
+            && (document.getElementById("check3").checked)
+            && (document.getElementById("check4").checked)
+            && (document.getElementById("check5").checked)
+            && (document.getElementById("check6").checked)
+            && (document.getElementById("check7").checked))
+          {
+            document.getElementById("test").disabled = false;
+
+          } else {
+            document.getElementById("test").disabled = true;
           }
-        }, false)
+        }
     </script>
+        <script th:inline="javascript">
+            console.log("A")
+            const submitButton = document.getElementById("test")
+            submitButton.addEventListener('click', (e) => {
+              console.log("B")
+              if (!confirm("振り込みますか？")) {
+                e.preventDefault();
+              }
+            }, false)
+    </script>
+    <!--<script>
+        function checkForm() {
+              var namae1 = document.getElementById("namae1");
+              var namae2 = document.getElementById("namae2");
+              var namae3 = document.getElementById("namae3");
+              var namae4 = document.getElementById("namae4");
+              var namae5 = document.getElementById("namae5");
+              var namae6 = document.getElementById("namae6");
+              var namae7 = document.getElementById("namae7");
+              if (namae1.value === "" || namae2.value === "" || namae3.value === "" || namae4.value === "" || namae5.value === "" || namae6.value === "" || namae7.value === ""){
+              alert("未入力の項目があります");
+                return false;
+              }
+              return true;
+
+    </script> -->
 </form>
+<div class="container">
+    <div class="child"></div>
+</div>
+<style>
+    h1 { text-align: center }
+    p { text-align: center;
+    font-size: 20px;
+    line-height: 10px;}
+    span {line-height: 5px;}
+    .checkbox1 { text-align: center;
+    width: 15px;
+	height: 15px;}
+    .button{
+    width: 300px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #68779a;
+    background: #cbe8fa;
+    cursor: pointer;}
+    .box {margin:  0 auto;
+     justify-content: center;
+     border: #4e7bcc 1px solid; /*境界線の指定*/
+     padding:2px;
+     text-align: center;
+     width: 400px;
+     }
+    .box span {
+     margin:0;
+     padding:0;
+}
+</style>
+</style>
 </body>
 </html>

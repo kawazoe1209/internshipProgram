@@ -4,6 +4,9 @@
     <meta charset="UTF-8"/>
     <title>振込情報入力画面</title>
     <style>
+        h1{ text-align: center }
+        h2{ text-align: center }
+        p{ text-align: center }
         body {
         background-color: #f0f0f0;
         margin: 0;
@@ -18,7 +21,7 @@
         }
         .content {
          background-color: #ffffff;
-         width: 80%;
+         width: 30%;
          padding: 20px;
          border-radius: 10px;
          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -26,7 +29,7 @@
          overflow: auto;
         }
         .form-control {
-            width: 100%;
+            width: 60%;
             padding: 8px;
             margin: 5px 0;
             box-sizing: border-box;
@@ -44,7 +47,7 @@
         }
         .form-confirmation-button{
         color: white;
-        background-color: #2185D0;
+        background-color: #A9E9FB;
         }
         .form-confirmation-button:hover {
         background-color: #1678c2;
@@ -56,32 +59,45 @@
         .form-clear-button:hover {
         background-color: #CCCCCC;
         }
+        .button{ width: 100px;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #68779a;
+        background: #cbe8fa;
+        cursor: pointer;}
 
     </style>
+
 </head>
+
 <body>
 <div class="content">
-    <h1>振込情報入力</h1>
+    <h1>振込情報入力<small class="text-danger ml-1">　※</small><small class="ml-1">は入力必須</small></h1>
     <form action="#" th:action="@{/bankTransferConfirmation}" th:object="${bankTransferApplication}" method="post">
         <p><label class="ml-1">金融機関名: <small class="text-danger ml-1">※</small></label><br>
-            <select th:field="*{bankName}" id="bankName" class="form-control">
+            <select th:field="*{bankName}" id="bankName" class="form-control" >
                 <option th:each="option : ${nameOptions}"
-                        th:value="${option}"
-                        th:text="${option}">選択肢
+                        th:value="${option.value}"
+                        th:text="${option.value}">選択肢
                 </option>
             </select></p>
-        <p><label class="ml-1">支店名: <small class="text-danger ml-1">※</small></label><br>
+        <p><label class="ml-1">支店名 <small class="text-danger ml-1">※</small></label><br>
             <input type="text" th:field="*{bankBranchName}" id="bankBranchName" class="form-control" /></p>
-        <p><label class="ml-1">科目名: <small class="text-danger ml-1">※</small></label><br>
-            <input type="text" th:field="*{bankSubjectName}" id="bankSubjectName" class="form-control" /></p>
-        <p><label class="ml-1">口座番号: <small class="text-danger ml-1">※</small></label><br>
-            <input type="number" th:field="*{bankAccountNum}" id="bankAccountNum" class="form-control" placeholder="1234567"/></p>
-        <p><label class="ml-1">口座名義: <small class="text-danger ml-1">※</small></label><br>
-            <input type="text" th:field="*{bankAccountName}" id="bankAccountName" class="form-control" /></p>
-        <p><label class="ml-1">金額: <small class="text-danger ml-1">※</small></label><br>
+        <p><label class="ml-1">科目名 <small class="text-danger ml-1">※</small></label><br>
+           <select th:field="*{bankSubjectName}" id="bankSubjectName" class="form-control"  >
+              <option th:each="option1 : ${nameOptions1}"
+                      th:value="${option1.value}"
+                      th:text="${option1.value}">選択肢
+              </option>
+           </select>
+        <p><label class="ml-1">口座番号(7ケタ) <small class="text-danger ml-1">※</small></label><br>
+            <input type="number"   oninput="javascript: this.value = this.value.slice(0, 7);"  th:field="*{bankAccountNum}" id="bankAccountNum" class="form-control" /></p>
+        <p><label class="ml-1">口座名義(カナ) 例:ヤマダタロウ<small class="text-danger ml-1">※</small></label><br>
+            <input pattern="[\u30A1-\u30F6]*"  th:field="*{bankAccountName}" id="bankAccountName" class="form-control" /></p>
+        <p><label class="ml-1">金額(円) <small class="text-danger ml-1">※</small></label><br>
             <input type="number" th:field="*{money}" id="money" class="form-control" /></p>
-        <p><label class="ml-1">振込指定日: <small class="text-danger ml-1">※</small></label><br>
-            <input type="text" th:field="*{transferDate}" id="transferDate" class="form-control" /></p>
+        <p><label class="ml-1">振込指定日 <small class="text-danger ml-1">※</small></label><br>
+            <input type="date" th:field="*{transferDate}" id="transferDate" class="form-control" /></p>
 
         <script>
             function checkForm() {
@@ -102,9 +118,10 @@
 
             }
         </script>
+
         <p style="text-align: center;">
-        <input type="submit" value="確認" class="form-control-button form-clear-button" onclick="return checkForm()"/>
-            <input type="reset" value="クリア" class="form-control-button form-clear-button"/></p>
+        <input type="submit" value="確認" class="button" onclick="return checkForm()"/>
+            <input type="reset" value="クリア" class="button form-clear-button"/></p>
 
             <!--<input type="submit" value="確認" class="form-control-button form-confirmation-button"/>  -->
 
@@ -113,4 +130,13 @@
 </div>
 </body>
 
+<body>
+<div class="content1">
+    <image src="https://3.bp.blogspot.com/-wf5p8ilIxOQ/U00KH4pCHPI/AAAAAAAAfOk/CcOEZqgGMKY/s800/mark_chuui.png"style="display: block; margin: auto;" alt="振込み詐欺注意"width="30%" height="30%"/>
+<h2><small class="text-danger ml-1">※</small>振込み詐欺に注意してください<small class="text-danger ml-1">※</small>
+</h2>
+<image src="https://2.bp.blogspot.com/-xCbKMvwXlQQ/UsZs_r-3jvI/AAAAAAAAcvU/Z104O4uK_sM/s800/akutoku_shouhou_furikome_sagi.png"style="display: block; margin: auto;" alt="振込み詐欺注意"
+       width="70%" height="70%"/>
+    </div>
+</body>
 </html>
