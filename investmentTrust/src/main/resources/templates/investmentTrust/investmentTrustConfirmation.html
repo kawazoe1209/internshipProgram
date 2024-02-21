@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <title>投資信託申込確認画面</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+
+        }
+
+        .contents{
+            margin: 0;
+            padding: 0;
+            justify-content: center; /* 水平方向の中央揃え */
+            align-items: center; /* 垂直方向の中央揃え */
+            background-color: rgb(235,247,251);
+        }
+
         h1 {
             color: white;
             background-color: #333333;
@@ -11,6 +25,129 @@
             text-align: center;
             margin-top: 0;
         }
+
+        .circleA{
+            justify-content: center; /*水平方向の中央揃え */
+            align-items: center;  /*垂直方向の中央揃え */
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        .circle{
+            /*margin: 0 auto;*/
+            justify-content: center; /*水平方向の中央揃え */
+            align-items: center;  /*垂直方向の中央揃え */
+
+            width: 50%;
+            border-radius: 20px;
+
+            /*
+            flex-direction: column;
+            */
+            background-color: white;
+        }
+
+        .circle.kolon{
+            text-align: center;
+
+        }
+
+        td:nth-child(1) {
+            text-align: left; /* セルのテキストを中央寄せにする */
+        }
+
+        td:nth-child(2) {
+            text-align: center; /* セルのテキストを中央寄せにする */
+        }
+
+        td:nth-child(3) {
+            text-align: right; /* セルのテキストを中央寄せにする */
+        }
+
+        .trust{
+            justify-content: center; /* 水平方向の中央揃え */
+            align-items: center; /* 垂直方向の中央揃え */
+        }
+
+        /* 確認ボタンの基本的なスタイル */
+#test {
+  background: #2584a4 ;
+  background: -moz-linear-gradient(top, #5bc7c7, #2584a4);
+  background: -webkit-gradient(linear,
+    left top,
+    left bottom,
+    from(#5bc7c7),
+    to(#2584a4));
+  border: 1px solid #1c6077;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 0 1px #fff;
+  color: #fff;
+  display: inline-block;
+  font-family: "Jun 501", sans-serif;
+  font-size: 15px;
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px #1c6077;
+  width: 120px;
+  cursor: pointer; /* マウスポインターを変える */
+  -moz-transition: all 0.2s ease-in-out; /* アニメーションの効果 */
+  -ms-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+/* 確認ボタンにマウスポインターが乗ったときのスタイル */
+#test:hover {
+  -moz-transform: scale(1.1); /* ボタンを拡大する */
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  font-size: 30px; /* テキストサイズを大きくする */
+}
+
+/* 確認ボタンの基本的なスタイル */
+#cancel {
+  background: #8b8b8b ;
+  background: -moz-linear-gradient(top, #c4c4c4, #8b8b8b);
+  background: -webkit-gradient(linear,
+    left top,
+    left bottom,
+    from(#c4c4c4),
+    to(#8b8b8b));
+  border: 1px solid #8b8b8b;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 0 1px #fff;
+  color: #fff;
+  display: inline-block;
+  font-family: "Jun 501", sans-serif;
+  font-size: 15px;
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px #999999;
+  width: 120px;
+  cursor: pointer; /* マウスポインターを変える */
+  -moz-transition: all 0.2s ease-in-out; /* アニメーションの効果 */
+  -ms-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+/* 確認ボタンにマウスポインターが乗ったときのスタイル */
+#cancel:hover {
+  -moz-transform: scale(1.1); /* ボタンを拡大する */
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  font-size: 20px; /* テキストサイズを大きくする */
+}
+
 
     </style>
     <!--
@@ -24,34 +161,52 @@
     </script>
     -->
 </head>
-<body>
-<h1>投資信託申込確認画面</h1>
-<form action="#" th:action="@{/investmentTrustCompletion}" th:object="${investmentTrustApplication}" method="post">
-    <p>投資信託銘柄: <span th:text="*{fundName}"></span></p>
-    <p>金融機関名: <span th:text="*{bankName}"></span></p>
-    <p>支店名: <span th:text="*{branchName}"></span></p>
-    <p>科目名: <span th:text="*{bankAccountType}"></span></p>
-    <p>口座番号: <span th:text="*{bankAccountNum}"></span></p>
-    <p>購入者名: <span th:text="*{name}"></span></p>
-    <!--
-    <p>銘柄選択: <span th:text="*{fundName}"></span></p>
-    -->
-    <p>購入金額: <span th:text="${T(java.lang.String).format('%,d', money)}"></span>円</p>
+<body class="contents">
+<h1>申込内容の確認</h1>
+<form  id="trust" action="#" th:action="@{/investmentTrustCompletion}" th:object="${investmentTrustApplication}" method="post">
+    <div class="circleA">
+        <div class="circle">
 
-    <input type="hidden" name="fundName" th:value="*{fundName}"/>
-    <input type="hidden" name="bankAccountNum" th:value="*{bankAccountNum}"/>
-    <input type="hidden" name="bankName" th:value="*{bankName}" />
 
-    <input type="hidden" name="branchName" th:value="*{branchName}"/>
-    <input type="hidden" name="bankAccountType" th:value="*{bankAccountType}"/>
-    <input type="hidden" name="name" th:value="*{name}" />
-    <!--
-    <input type="hidden" name="fundName" th:value="*{fundName}"/>
-    -->
-    <input type="hidden" name="money" th:value="*{money}"/>
-    <p>
+            <p>投資信託銘柄：<span th:text="*{fundName}"></span><br></p>
+            <p>金融機関名　　：<span th:text="*{bankName}"></span><br></p>
+            <p>支店名　　　　：<span th:text="*{branchName}"></span> <br></p>
+            <p>科目名　　　　：<span th:text="*{bankAccountType}"></span><br></p>
+            <p>口座番号　　　：<span th:text="*{bankAccountNum}"></span><br> </p>
+            <p>購入者名　　　：<span th:text="*{name}"></span> </p><br>
+            <p>購入金額　　　：<span th:text="${T(java.lang.String).format('%,d', money)}"></span>円<br></p>
+
+            <!--
+            <table>
+                <tr><tb>投資信託銘柄</tb>  <tb><span class="kolon">：</span></tb> <tb><span th:text="*{fundName}"></span>  </tb> </tr>
+                <tr><tb>金融機関名　　</tb><tb><span class="kolon">：</span></tb> <tb><span th:text="*{bankName}"></span>  </tb> </tr>
+                <tr><tb>支店名　　　　</tb><tb><span class="kolon">：</span></tb> <tb><span th:text="*{branchName}"></span>  </tb> </tr>
+                <tr><tb>科目名　　　　</tb><tb><span class="kolon">：</span></tb> <tb><span th:text="*{bankAccountType}"></span>  </tb> </tr>
+                <tr><tb>口座番号　　　</tb><tb><span class="kolon">：</span></tb> <tb><span th:text="*{bankAccountNum}"></span>  </tb> </tr>
+                <tr><tb>購入者名　　　</tb><tb><span class="kolon">：</span></tb> <tb><span th:text="*{name}"></span>  </tb> </tr>
+
+                <tr><tb>購入金額　　　</tb><tb><span class="kolon">：</span></tb> <tb><span th:text="${T(java.lang.String).format('%,d', money)}"></span>円  </tb> </tr>
+            </table>
+            -->
+
+            <input type="hidden" name="fundName" th:value="*{fundName}"/>
+            <input type="hidden" name="bankAccountNum" th:value="*{bankAccountNum}"/>
+            <input type="hidden" name="bankName" th:value="*{bankName}" />
+
+            <input type="hidden" name="branchName" th:value="*{branchName}"/>
+            <input type="hidden" name="bankAccountType" th:value="*{bankAccountType}"/>
+            <input type="hidden" name="name" th:value="*{name}" />
+            <!--
+            <input type="hidden" name="fundName" th:value="*{fundName}"/>
+            -->
+            <input type="hidden" name="money" th:value="*{money}"/>
+
+        </div>
+    </div>
+
+    <p style="text-align: center;">
         <input id="test" type="submit" value="申込"/>
-        <input type="button" value="キャンセル" onclick="window.location='/investmentTrust';"/>
+        <input id="cancel" type="button" value="キャンセル" onclick="window.location='/investmentTrust';"/>
     </p>
 </form>
 <script th:inline="javascript">

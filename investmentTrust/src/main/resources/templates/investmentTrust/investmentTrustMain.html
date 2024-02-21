@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -97,6 +96,8 @@ flex-direction: column;
    justify-content: center; /*水平方向の中央揃え */
    align-items: center;  /*垂直方向の中央揃え */
    display: flex;
+   width: 50%;
+   border-radius: 20px;
 
    flex-direction: column;
    background-color: white;
@@ -157,11 +158,90 @@ html {
 }
 
 /* 確認ボタンの基本的なスタイル */
+#check {
+  background: #2584a4 ;
+  background: -moz-linear-gradient(top, #5bc7c7, #2584a4);
+  background: -webkit-gradient(linear,
+    left top,
+    left bottom,
+    from(#5bc7c7),
+    to(#2584a4));
+  border: 1px solid #1c6077;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 0 1px #fff;
+  color: #fff;
+  display: inline-block;
+  font-family: "Jun 501", sans-serif;
+  font-size: 15px;
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px #1c6077;
+  width: 120px;
+  cursor: pointer; /* マウスポインターを変える */
+  -moz-transition: all 0.2s ease-in-out; /* アニメーションの効果 */
+  -ms-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+/* 確認ボタンにマウスポインターが乗ったときのスタイル */
+#check:hover {
+  -moz-transform: scale(1.1); /* ボタンを拡大する */
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  font-size: 30px; /* テキストサイズを大きくする */
+}
+
+/* 確認ボタンの基本的なスタイル */
+#reset {
+  background: #8b8b8b ;
+  background: -moz-linear-gradient(top, #c4c4c4, #8b8b8b);
+  background: -webkit-gradient(linear,
+    left top,
+    left bottom,
+    from(#c4c4c4),
+    to(#8b8b8b));
+  border: 1px solid #8b8b8b;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 0 1px #fff;
+  color: #fff;
+  display: inline-block;
+  font-family: "Jun 501", sans-serif;
+  font-size: 15px;
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px #999999;
+  width: 120px;
+  cursor: pointer; /* マウスポインターを変える */
+  -moz-transition: all 0.2s ease-in-out; /* アニメーションの効果 */
+  -ms-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+/* 確認ボタンにマウスポインターが乗ったときのスタイル */
+#reset:hover {
+  -moz-transform: scale(1.1); /* ボタンを拡大する */
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  font-size: 30px; /* テキストサイズを大きくする */
+}
+
+
+/* 確認ボタンの基本的なスタイル */
 .confirm-button {
-    background: #5b9507;
-    background: -moz-linear-gradient(top, #a3ea3f, #5b9507);
-    background: -webkit-gradient(linear, left top, left bottom, from(#a3ea3f), to(#5b9507));
-    border: 1px solid #487606;
+    background: #2584a4;
+    background: -moz-linear-gradient(top, #5bc7c7, #2584a4);
+    background: -webkit-gradient(linear, left top, left bottom, from(#5bc7c7), to(#2584a4));
+    border: 1px solid #1c6077;
     border-radius: 28px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 0 1px #fff;
     color: #fff;
@@ -169,11 +249,11 @@ html {
     font-family: "Jun 501", sans-serif;
     font-size: 26px;
     height: 56px;
-    line-height: 56px;
+    line-height: 0px;
     overflow: hidden;
     text-align: center;
     text-decoration: none;
-    text-shadow: 0 -1px 1px #487606;
+    text-shadow: 0 -1px 1px #1c6077;
     width: 200px;
 }
 
@@ -395,110 +475,124 @@ html {
         <div class="circleA">
 
 
-        <div class="circle">
-        <label>投資信託銘柄の選択</label>
-        <div>
-            <input type="radio" id="fundName" th:value="とってもいい日経平均インデックス" th:field="*{fundName}" />
-            <label>とってもいい日経平均インデックス</label>
-        </div>
-        <p>
-            <label class="ml-1">金融機関名: <small class="text-danger ml-1">※</small></label><br>
-            <select id="bankName" th:field="*{bankName}" class="form-control">
-                <option th:each="option : ${nameOptions}"
-                        th:value="${option}"
-                        th:text="${option}">
-                    選択肢
-                </option>
-            </select>
-        </p>
+            <div class="circle">
+                <p>
+                    <label>投資信託銘柄の選択</label>
+                <div>
+                    <input type="radio" id="fundName" th:value="とってもいい日経平均インデックス" th:field="*{fundName}" />
+                    <label>とってもいい日経平均インデックス</label>
+                </div>
+                </p>
+
+                <p>
+                    <label class="ml-1">金融機関名: <small class="text-danger ml-1">※</small></label><br>
+                    <select id="bankName" th:field="*{bankName}" class="form-control">
+                        <option th:each="option : ${nameOptions}"
+                                th:value="${option}"
+                                th:text="${option}">
+                            選択肢
+                        </option>
+                    </select>
+                </p>
 
 
-        <p id="bankNameCheck" style="color: red;"></p>
+                <p id="bankNameCheck" style="color: red;"></p>
 
 
-        <p>
-            <label class="ml-1">支店名: <small class="text-danger ml-1">※</small></label><br>
-            <select id="branchName" th:field="*{branchName}" class="form-control">
-                <option th:each="option : ${branchNameOptions1}"
-                        th:value="${option}"
-                        th:text="${option}">
-                    選択肢
-                </option>
-                <option th:each="option : ${branchNameOptions2}"
-                        th:value="${option}"
-                        th:text="${option}">
-                    選択肢
-                </option>
-            </select>
+                <p>
+                    <label class="ml-1">支店名: <small class="text-danger ml-1">※</small></label><br>
+                    <select id="branchName" th:field="*{branchName}" class="form-control">
+                        <option th:each="option : ${branchNameOptions1}"
+                                th:value="${option}"
+                                th:text="${option}">
+                            選択肢
+                        </option>
+                        <option th:each="option : ${branchNameOptions2}"
+                                th:value="${option}"
+                                th:text="${option}">
+                            選択肢
+                        </option>
+                    </select>
 
 
-        </p>
-        <p id="branchNameCheck" style="color: red;"></p>
+                </p>
+                <p id="branchNameCheck" style="color: red;"></p>
 
-        <p>
-            <label class="ml-1">科目名: <small class="text-danger ml-1">※</small></label><br>
-            <select id="bankAccountType" th:field="*{bankAccountType}" class="form-control">
-                <option th:each="option : ${bankAccountTypeOptions1}"
-                        th:value="${option}"
-                        th:text="${option}">
-                    選択肢
-                </option>
-                <option th:each="option : ${bankAccountTypeOptions2}"
-                        th:value="${option}"
-                        th:text="${option}">
-                    選択肢
-                </option>
-            </select>
+                <p>
+                    <label class="ml-1">科目名: <small class="text-danger ml-1">※</small></label><br>
+                    <select id="bankAccountType" th:field="*{bankAccountType}" class="form-control">
+                        <option th:each="option : ${bankAccountTypeOptions1}"
+                                th:value="${option}"
+                                th:text="${option}">
+                            選択肢
+                        </option>
+                        <option th:each="option : ${bankAccountTypeOptions2}"
+                                th:value="${option}"
+                                th:text="${option}">
+                            選択肢
+                        </option>
+                    </select>
 
-        </p>
-        <p id="bankAccountTypeCheck" style="color: red;"></p>
-
-
-        <p>
-            <label class="ml-1">口座番号: <small class="text-danger ml-1">※</small></label><br>
-            <input type="number" id="number" oninput="javascript: this.value = this.value.slice(0, 7);" th:field="*{bankAccountNum}" class="form-control" placeholder="1234567" />
-
-        </p>
-
-        <p id="numberCheck" style="color: red;"></p>
-            <!--
-            <script>
-                const check = document.getElementById("check");
-                const number = document.getElementById("number");
-                const numberCheck = document.getElementById("numberCheck");
-
-                check.addEventListener("submit", function (event) {
-                    if (number.value.trim() == "") {
-                        event.preventDefault(); // 送信をキャンセル
-                        numberCheck.textContent = "入力されていません";
-                    } else {
-                        numberCheck.textContent = ""; // エラーメッセージをクリア
-                    }
-
-                });
-            </script>
-            -->
+                </p>
+                <p id="bankAccountTypeCheck" style="color: red;"></p>
 
 
-        <p>
-            <label class="ml-1">購入者名: <small class="text-danger ml-1">※</small></label><br>
-            <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="氏名" />
-        </p>
-        <p id="nameCheck" style="color: red;"></p>
+                <p>
+                <div>
+                    <label class="ml-1">口座番号: <small class="text-danger ml-1">※</small></label><br>
+                    <input type="number" id="number" oninput="javascript: this.value = this.value.slice(0, 7);" th:field="*{bankAccountNum}" class="form-control" placeholder="1234567" />
+                </div>
+                <span id="numberCheck" style="color: red;"></span>
 
-        <p>
-            <label class="ml-1">購入金額: <small class="text-danger ml-1">※</small></label><br>
-            <input type="number"  pattern="\d*" id="money" step="100" min="0" th:field="*{money}" class="form-control" placeholder="半角入力" />
+                </p>
 
-        </p>
-        <p id="moneyCheck" style="color: red;"></p>
-        </div>
+                <!--
+                <p id="numberCheck" style="color: red;"></p>
+                -->
+                <!--
+                <script>
+                    const check = document.getElementById("check");
+                    const number = document.getElementById("number");
+                    const numberCheck = document.getElementById("numberCheck");
+
+                    check.addEventListener("submit", function (event) {
+                        if (number.value.trim() == "") {
+                            event.preventDefault(); // 送信をキャンセル
+                            numberCheck.textContent = "入力されていません";
+                        } else {
+                            numberCheck.textContent = ""; // エラーメッセージをクリア
+                        }
+
+                    });
+                </script>
+                -->
+
+
+                <p>
+                <div>
+                    <label class="ml-1">購入者名: <small class="text-danger ml-1">※</small></label><br>
+                    <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="氏名" />
+                </div>
+                <span id="nameCheck" style="color: red;"></span>
+                </p>
+
+
+                <p>
+                <div>
+                    <label class="ml-1">購入金額: <small class="text-danger ml-1">※</small></label><br>
+                    <input type="number"  pattern="\d*" id="money" step="100" min="0" th:field="*{money}" class="form-control" placeholder="半角入力" />
+                </div>
+                <span id="moneyCheck" style="color: red;"></span>
+                </p>
+
+            </div>
         </div>
 
         <p style="text-align: center;">
             <input id="check" type="submit" value="確認"
-                   class="form-control-button form-confirmation-button " />
-            <span><input type="reset" value="クリア" required class="form-control-button form-clear-button" /></span>
+                   class="form-control-button form-confirmation-button"/>
+
+            <span><input id="reset" type="reset" value="クリア" required class="form-control-button form-clear-button" /></span>
         </p>
 
         <a href="#" class="gotop">トップへ</a>
