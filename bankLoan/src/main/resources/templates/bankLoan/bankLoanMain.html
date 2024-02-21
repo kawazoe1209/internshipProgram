@@ -205,14 +205,13 @@
             }
             console.log("B")
             if(flag){
-                window.alert('必須項目に未入力がありました!!!!!'); // 入力漏れがあれば警告ダイアログを表示
+                window.alert('必須項目に未入力がありました'); // 入力漏れがあれば警告ダイアログを表示
                 e.preventDefault();// 送信を中止
             } else if(document.getElementById("fieldBranchName").value.indexOf("支店") == -1){
                 window.alert('「支店」まで入力してください'); // 入力漏れがあれば警告ダイアログを表示
                 e.preventDefault();// 送信を中止
             }
             console.log("CC")
-            e.preventDefault();// 送信を中止
         })
 
         function bankChange(){
