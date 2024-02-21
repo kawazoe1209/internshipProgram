@@ -1,97 +1,433 @@
+
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+    <meta name="viewport" content=”width=device-width,initial-scale=1″/>
     <title>投信申込情報入力画面</title>
     <style>
-        body {
-        background-color: #f0f0f0;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        padding-top: 40px;
-        padding-bottom: 40px;
-        justify-content: center;
-        align-items: center;
-        min-height: 85vh;
-        overflow: auto;
-        }
-        .content {
-         background-color: #ffffff;
-         width: 80%;
-         padding: 20px;
-         border-radius: 10px;
-         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-         min-height: 50vh;
-         overflow: auto;
-        }
-        .form-control {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0;
-            box-sizing: border-box;
-        }
+        style1.css
+/* コメント：全体のフォントを指定 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+
+}
+
+/* コメント：見出しのスタイルを指定 */
+h1 {
+
+    color: white;
+    background-color: #333333;
+    padding: 20px;
+    text-align: center;
+    margin-top: 0;
+}
+
+h2 {
+    color: #333333;
+    border-bottom: 1px solid #333333;
+    margin: 20px 0;
+}
 
 
-        .text-danger {
-        color: red;
+/* コメント：ラジオボタンのスタイルを指定 */
+input[type="radio"] {
+    margin: 10px;
+}
+
+/* コメント：ラベルのスタイルを指定 */
+label {
+    font-weight: bold;
+}
+
+/* コメント：入力欄のスタイルを指定 */
+input[type="number"],
+input[type="text"],
+select {
+    width: 200px;
+    height: 30px;
+    border: 1px solid #333333;
+    margin: 10px;
+}
+
+/* コメント：ボタンのスタイルを指定 */
+input[type="submit"],
+input[type="reset"] {
+    width: 100px;
+    height: 40px;
+    border: none;
+    color: white;
+    margin: 10px;
+}
+
+/* コメント：確認ボタンのスタイルを指定 */
+input[type="submit"] {
+    background-color: #333333;
+}
+
+/* コメント：クリアボタンのスタイルを指定 */
+input[type="reset"] {
+    background-color: #999999;
+}
+
+.trust{
+justify-content: center; /* 水平方向の中央揃え */
+align-items: center; /* 垂直方向の中央揃え */
+}
+
+.contents{
+margin: 0;
+padding: 0;
+justify-content: center; /* 水平方向の中央揃え */
+align-items: center; /* 垂直方向の中央揃え */
+background-color: rgb(235,247,251);
+}
+
+.circleA{
+justify-content: center; /*水平方向の中央揃え */
+align-items: center;  /*垂直方向の中央揃え */
+display: flex;
+
+flex-direction: column;
+}
+
+.circle{
+   /*margin: 0 auto;*/
+   justify-content: center; /*水平方向の中央揃え */
+   align-items: center;  /*垂直方向の中央揃え */
+   display: flex;
+
+   flex-direction: column;
+   background-color: white;
+}
+
+/* ページトップに戻るボタンのスタイル */
+.gotop {
+    /* ボタンの大きさ */
+    width: 60px;
+    height: 60px;
+    /* ボタンの形 */
+    border: 1px solid #999;
+    border-radius: 50%;
+    /* ボタンの色 */
+    background: #fff;
+    color: #333;
+    /* ボタンの文字 */
+    font-size: 14px;
+    text-align: center;
+    line-height: 60px;
+    text-decoration: none;
+    /* ボタンの透明度 */
+    opacity: 0.5;
+    /* ボタンの位置 */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    /* ボタンの重なり順 */
+    z-index: 10000;
+}
+
+    /* ボタンにマウスを乗せたときのスタイル */
+    .gotop:hover {
+        /* ボタンの透明度を変える */
+        opacity: 1;
+    }
+
+    /* ボタンに矢印を追加する */
+    .gotop::before {
+        /* 矢印の形 */
+        content: "";
+        display: block;
+        border-top: 2px solid #333;
+        border-right: 2px solid #333;
+        width: 15px;
+        height: 15px;
+        /* 矢印の位置 */
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        /* 矢印の角度 */
+        transform: rotate(-45deg);
+    }
+
+/* スムーズスクロールを有効にする */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 確認ボタンの基本的なスタイル */
+.confirm-button {
+    background: #5b9507;
+    background: -moz-linear-gradient(top, #a3ea3f, #5b9507);
+    background: -webkit-gradient(linear, left top, left bottom, from(#a3ea3f), to(#5b9507));
+    border: 1px solid #487606;
+    border-radius: 28px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 0 1px #fff;
+    color: #fff;
+    display: inline-block;
+    font-family: "Jun 501", sans-serif;
+    font-size: 26px;
+    height: 56px;
+    line-height: 56px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 -1px 1px #487606;
+    width: 200px;
+}
+
+    /* 確認ボタンの内側のスタイル */
+    .confirm-button span {
+        display: block;
+        height: 56px;
+        line-height: 56px;
+        opacity: 0.9;
+        -moz-transition: all 0.2s ease-in-out;
+        -ms-transition: all 0.2s ease-in-out;
+        -webkit-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+    }
+
+    /* 確認ボタンにマウスポインターが乗ったときのスタイル */
+    .confirm-button.hover span,
+    .confirm-button:hover span {
+        opacity: 1;
+        -moz-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+        /* テキストサイズを大きくする */
+        font-size: 30px;
+    }
+
+/* ハンバーガーメニューのアイコンのスタイル */
+.hamburger-menu {
+    position: fixed; /* 右上に固定する */
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer; /* マウスポインターを変える */
+}
+
+    .hamburger-menu span {
+        display: block; /* 横線を作る */
+        width: 100%;
+        height: 4px;
+        background: #333;
+        margin: 8px 0;
+        -moz-transition: all 0.3s ease-in-out; /* アニメーションの効果 */
+        -ms-transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+/* メニュー一覧のスタイル */
+.menu-list {
+    position: fixed; /* 右上に固定する */
+    top: 60px;
+    right: 10px;
+    width: 200px;
+    list-style: none; /* リストのマーカーを消す */
+    padding: 0;
+    margin: 0;
+    display: none; /* 最初は隠す */
+}
+
+    .menu-list li {
+        background: #fff; /* 背景色を白にする */
+        border: 1px solid #ccc; /* 境界線を付ける */
+    }
+
+        .menu-list li a {
+            display: block; /* リンクをブロック要素にする */
+            color: #333; /* リンクの色を黒にする */
+            text-decoration: none; /* リンクの下線を消す */
+            padding: 10px; /* リンクの余白を付ける */
         }
-        .form-control-button {
-        width: 80px;
-        padding: 10px 20px;
-        margin-top: 10px;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
+
+            .menu-list li a:hover {
+                background: #eee; /* リンクにマウスポインターが乗ったときの背景色を変える */
+            }
+
+/* ハンバーガーメニューのアイコンがクリックされたときのスタイル */
+.hamburger-menu.active span:nth-child(1) {
+    -moz-transform: rotate(45deg) translate(8px, 8px); /* 上の横線を斜めにする */
+    -ms-transform: rotate(45deg) translate(8px, 8px);
+    -webkit-transform: rotate(45deg) translate(8px, 8px);
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+    opacity: 0; /* 中央の横線を消す */
+}
+
+.hamburger-menu.active span:nth-child(3) {
+    -moz-transform: rotate(-45deg) translate(8px, -8px); /* 下の横線を斜めにする */
+    -ms-transform: rotate(-45deg) translate(8px, -8px);
+    -webkit-transform: rotate(-45deg) translate(8px, -8px);
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
+.hamburger-menu.active + .menu-list {
+    display: block; /* メニュー一覧を表示する */
+}
+
+/* ハンバーガーメニューのアイコンのスタイル */
+.hamburger-menu {
+    position: fixed; /* 右上に固定する */
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer; /* マウスポインターを変える */
+}
+
+    .hamburger-menu span {
+        display: block; /* 横線を作る */
+        width: 100%;
+        height: 4px;
+        background: #333;
+        margin: 8px 0;
+        -moz-transition: all 0.3s ease-in-out; /* アニメーションの効果 */
+        -ms-transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+/* メニュー一覧のスタイル */
+.menu-list {
+    position: fixed; /* 右上に固定する */
+    top: 60px;
+    right: 10px;
+    width: 200px;
+    list-style: none; /* リストのマーカーを消す */
+    padding: 0;
+    margin: 0;
+    display: none; /* 最初は隠す */
+}
+
+    .menu-list li {
+        background: #fff; /* 背景色を白にする */
+        border: 1px solid #ccc; /* 境界線を付ける */
+    }
+
+        .menu-list li a {
+            display: block; /* リンクをブロック要素にする */
+            color: #333; /* リンクの色を黒にする */
+            text-decoration: none; /* リンクの下線を消す */
+            padding: 10px; /* リンクの余白を付ける */
         }
-        .form-confirmation-button{
-        color: white;
-        background-color: #2185D0;
-        }
-        .form-confirmation-button:hover {
-        background-color: #1678c2;
-        }
-        .form-clear-button{
-        color: black;
-        background-color: #E0E1E2;
-        }
-        .form-clear-button:hover {
-        background-color: #CCCCCC;
-        }
+
+            .menu-list li a:hover {
+                background: #eee; /* リンクにマウスポインターが乗ったときの背景色を変える */
+            }
+
+/* ハンバーガーメニューのアイコンがクリックされたときのスタイル */
+.hamburger-menu.active span:nth-child(1) {
+    -moz-transform: rotate(45deg) translate(8px, 8px); /* 上の横線を斜めにする */
+    -ms-transform: rotate(45deg) translate(8px, 8px);
+    -webkit-transform: rotate(45deg) translate(8px, 8px);
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+    opacity: 0; /* 中央の横線を消す */
+}
+
+.hamburger-menu.active span:nth-child(3) {
+    -moz-transform: rotate(-45deg) translate(8px, -8px); /* 下の横線を斜めにする */
+    -ms-transform: rotate(-45deg) translate(8px, -8px);
+    -webkit-transform: rotate(-45deg) translate(8px, -8px);
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
+.hamburger-menu.active + .menu-list {
+    display: block; /* メニュー一覧を表示する */
+}
 
     </style>
+
+
 </head>
-<body>
-<div class="content">
+<body class="contents">
+<!-- ハンバーガーメニューのアイコン -->
+<div class="hamburger-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<!-- メニュー一覧 -->
+<ul class="menu-list">
+    <li><a href="transfer.html">振込情報入力</a></li>
+    <li><a href="loan.html">ローン申込情報入力画面</a></li>
+    <li><a href="investment.html">投信申込情報入力画面</a></li>
+</ul>
+
+<script>
+    // メニュー一覧の要素を取得
+    var menuList = document.querySelector(".menu-list");
+
+    // ハンバーガーメニューのアイコンの要素を取得
+    var menuIcon = document.querySelector(".menu-icon");
+
+    // メニュー一覧の開閉を切り替える関数
+    function toggleMenu() {
+        // メニュー一覧にopenクラスがあれば削除し、なければ追加する
+        menuList.classList.toggle("open");
+
+        // ハンバーガーメニューのアイコンにopenクラスがあれば削除し、なければ追加する
+        menuIcon.classList.toggle("open");
+    }
+
+    // ハンバーガーメニューのアイコンにクリックイベントを設定する
+    hamburgerMenu.addEventListener("click", function () {
+        // ハンバーガーメニューのアイコンにactiveというクラスを付けたり外したりする
+        hamburgerMenu.classList.toggle("active");
+    });
+</script>
+<div >
     <h1>投資信託申込情報入力</h1>
 
     <form id="trust" action="#" th:action="@{/investmentTrustConfirmation}" th:object="${investmentTrustApplication}" method="post">
+        <div class="circleA">
+
+
+        <div class="circle">
         <label>投資信託銘柄の選択</label>
         <div>
             <input type="radio" id="fundName" th:value="とってもいい日経平均インデックス" th:field="*{fundName}" />
             <label>とってもいい日経平均インデックス</label>
         </div>
-        <p><label class="ml-1">金融機関名: <small class="text-danger ml-1">※</small></label><br>
+        <p>
+            <label class="ml-1">金融機関名: <small class="text-danger ml-1">※</small></label><br>
             <select id="bankName" th:field="*{bankName}" class="form-control">
                 <option th:each="option : ${nameOptions}"
                         th:value="${option}"
-                        th:text="${option}">選択肢
+                        th:text="${option}">
+                    選択肢
                 </option>
-            </select></p>
+            </select>
+        </p>
 
 
         <p id="bankNameCheck" style="color: red;"></p>
 
 
-        <p><label class="ml-1">支店名: <small class="text-danger ml-1">※</small></label><br>
+        <p>
+            <label class="ml-1">支店名: <small class="text-danger ml-1">※</small></label><br>
             <select id="branchName" th:field="*{branchName}" class="form-control">
                 <option th:each="option : ${branchNameOptions1}"
                         th:value="${option}"
-                        th:text="${option}">選択肢
+                        th:text="${option}">
+                    選択肢
                 </option>
                 <option th:each="option : ${branchNameOptions2}"
                         th:value="${option}"
-                        th:text="${option}">選択肢
+                        th:text="${option}">
+                    選択肢
                 </option>
             </select>
 
@@ -99,15 +435,18 @@
         </p>
         <p id="branchNameCheck" style="color: red;"></p>
 
-        <p><label class="ml-1">科目名: <small class="text-danger ml-1">※</small></label><br>
+        <p>
+            <label class="ml-1">科目名: <small class="text-danger ml-1">※</small></label><br>
             <select id="bankAccountType" th:field="*{bankAccountType}" class="form-control">
                 <option th:each="option : ${bankAccountTypeOptions1}"
                         th:value="${option}"
-                        th:text="${option}">選択肢
+                        th:text="${option}">
+                    選択肢
                 </option>
                 <option th:each="option : ${bankAccountTypeOptions2}"
                         th:value="${option}"
-                        th:text="${option}">選択肢
+                        th:text="${option}">
+                    選択肢
                 </option>
             </select>
 
@@ -115,23 +454,55 @@
         <p id="bankAccountTypeCheck" style="color: red;"></p>
 
 
-        <p><label class="ml-1">口座番号: <small class="text-danger ml-1">※</small></label><br>
-            <input type="number" id="number" oninput="javascript: this.value = this.value.slice(0, 8);" required th:field="*{bankAccountNum}" class="form-control" placeholder="1234567"/></p>
+        <p>
+            <label class="ml-1">口座番号: <small class="text-danger ml-1">※</small></label><br>
+            <input type="number" id="number" oninput="javascript: this.value = this.value.slice(0, 7);" th:field="*{bankAccountNum}" class="form-control" placeholder="1234567" />
+
+        </p>
 
         <p id="numberCheck" style="color: red;"></p>
+            <!--
+            <script>
+                const check = document.getElementById("check");
+                const number = document.getElementById("number");
+                const numberCheck = document.getElementById("numberCheck");
+
+                check.addEventListener("submit", function (event) {
+                    if (number.value.trim() == "") {
+                        event.preventDefault(); // 送信をキャンセル
+                        numberCheck.textContent = "入力されていません";
+                    } else {
+                        numberCheck.textContent = ""; // エラーメッセージをクリア
+                    }
+
+                });
+            </script>
+            -->
 
 
-        <p><label class="ml-1">購入者名: <small class="text-danger ml-1">※</small></label><br>
-            <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="氏名"/></p>
+        <p>
+            <label class="ml-1">購入者名: <small class="text-danger ml-1">※</small></label><br>
+            <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="氏名" />
+        </p>
         <p id="nameCheck" style="color: red;"></p>
 
-        <p><label class="ml-1">購入金額: <small class="text-danger ml-1">※</small></label><br>
-            <input type="number" id="money" th:field="*{money}" class="form-control" placeholder="半角入力"/></p>
-        <p id="moneyCheck" style="color: red;"></p>
+        <p>
+            <label class="ml-1">購入金額: <small class="text-danger ml-1">※</small></label><br>
+            <input type="number"  pattern="\d*" id="money" step="100" min="0" th:field="*{money}" class="form-control" placeholder="半角入力" />
 
-        <p style="text-align: center;"><input id="check" type="submit" value="確認"
-                                              class="form-control-button form-confirmation-button"/>
-            <input type="reset" value="クリア" required class="form-control-button form-clear-button"/></p>
+        </p>
+        <p id="moneyCheck" style="color: red;"></p>
+        </div>
+        </div>
+
+        <p style="text-align: center;">
+            <input id="check" type="submit" value="確認"
+                   class="form-control-button form-confirmation-button " />
+            <span><input type="reset" value="クリア" required class="form-control-button form-clear-button" /></span>
+        </p>
+
+        <a href="#" class="gotop">トップへ</a>
+
 
     </form>
 
@@ -156,15 +527,33 @@
 </div>
 <script>
     const trust = document.getElementById("trust");
+    const number = document.getElementById("number");
+    const numberCheck = document.getElementById("numberCheck");
     const name = document.getElementById("name");
     const nameCheck = document.getElementById("nameCheck");
+    const money = document.getElementById("money");
+    const moneyCheck = document.getElementById("moneyCheck");
 
-    trust.addEventListener("submit", function(event){
-        if(name.value.trim() == ""){
+    trust.addEventListener("submit", function (event) {
+        if (number.value.trim() == "") {
+            numberCheck.textContent = "入力されていません";
             event.preventDefault(); // 送信をキャンセル
+        } else {
+            numberCheck.textContent = ""; // エラーメッセージをクリア
+        }
+
+        if (name.value.trim() == ""){
             nameCheck.textContent = "入力されていません";
+            event.preventDefault(); // 送信をキャンセル
         } else {
             nameCheck.textContent = ""; // エラーメッセージをクリア
+        }
+
+        if (money.value.trim() == ""){
+            moneyCheck.textContent = "入力されていません";
+            event.preventDefault(); // 送信をキャンセル
+        } else {
+            moneyCheck.textContent = ""; // エラーメッセージをクリア
         }
 
     });

@@ -3,6 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>投資信託申込確認画面</title>
+    <style>
+        h1 {
+            color: white;
+            background-color: #333333;
+            padding: 20px;
+            text-align: center;
+            margin-top: 0;
+        }
+
+    </style>
     <!--
     <script th:inline="javascript">
         /*<![CDATA[*/
@@ -26,7 +36,7 @@
     <!--
     <p>銘柄選択: <span th:text="*{fundName}"></span></p>
     -->
-    <p>購入金額: <span th:text="*{money}"></span></p>
+    <p>購入金額: <span th:text="${T(java.lang.String).format('%,d', money)}"></span>円</p>
 
     <input type="hidden" name="fundName" th:value="*{fundName}"/>
     <input type="hidden" name="bankAccountNum" th:value="*{bankAccountNum}"/>
