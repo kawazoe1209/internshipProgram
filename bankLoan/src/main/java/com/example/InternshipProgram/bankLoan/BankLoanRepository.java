@@ -13,7 +13,7 @@ public class BankLoanRepository {
     JdbcTemplate jdbcTemplate;
 
     public void create(BankLoanApplicationForm bankLoanApplicationForm) {
-        String sql = "INSERT INTO bankLoan_table(bankName, bankAccountNum, money) VALUES(?, ?, ?)";
+        String sql = "INSERT INTO bankLoan_table(bankName, bankAccountNum, loanAmount) VALUES(?, ?, ?)";
         jdbcTemplate.update(sql, bankLoanApplicationForm.getBankName(), bankLoanApplicationForm.getBankAccountNum(), bankLoanApplicationForm.getMoney());
     }
 
