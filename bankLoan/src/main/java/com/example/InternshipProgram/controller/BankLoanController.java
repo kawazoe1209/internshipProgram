@@ -1,7 +1,7 @@
 package com.example.InternshipProgram.controller;
 
 import com.example.InternshipProgram.entity.BankLoanForm;
-import com.example.InternshipProgram.service.BankLoanService;
+import com.example.InternshipProgram.service.ApplyBankLoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class BankLoanController {
 
     @Autowired
-    private BankLoanService bankLoanService;
+    private ApplyBankLoanService applyBankLoanService;
 
     @GetMapping("/bankLoan")
     public String bankTransfer(Model model) {
@@ -33,7 +33,7 @@ public class BankLoanController {
 
     @PostMapping("/bankLoanCompletion")
     public String completion(@ModelAttribute BankLoanForm bankLoanForm, Model model) {
-        bankLoanService.create(bankLoanForm);
+        applyBankLoanService.applyBankLoan(bankLoanForm);
         return "bankLoan/bankLoanCompletion";
     }
 

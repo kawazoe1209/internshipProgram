@@ -8,11 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class BankLoanService {
+public class ApplyBankLoanService {
     @Autowired
     private BankLoanRepository bankLoanRepository;
 
-    public void create(BankLoanForm bankLoanForm) {
+    public void applyBankLoan(BankLoanForm bankLoanForm) {
         bankLoanRepository.create(bankLoanForm);
     }
 }
